@@ -2,7 +2,6 @@
 
 import os
 import sys
-import six
 
 from pathlib import Path
 from shutil import copyfile, move, rmtree
