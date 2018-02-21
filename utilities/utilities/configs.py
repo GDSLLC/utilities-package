@@ -14,4 +14,4 @@ def get_json_dict_from_dir(name, dir):
     if name in names:
         with open(os.path.join(dir, name + ".json"), 'r') as f:
             dic = json.load(f)
-    print(dic)
+    return dic
