@@ -1,0 +1,19 @@
+syntax: glob
+
+## patterns
+*.orig
+*.tgz
+*.swp
+*.swo
+*~
+*.DS_Store*
+*.vagrant*
+*.pem
+*.pub
+*.log
+*.pyc
+*.#*
+*#
+*.egg-info
+*flymd*
+*dist*

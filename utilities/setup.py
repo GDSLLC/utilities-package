@@ -1,4 +1,7 @@
-# -*- coding: utf-8 -*-
+import sys
+if sys.version_info.major < 3:
+    sys.exit('Python 3 required but lower version found. Aborted.')
+
 from __future__ import absolute_import, division, print_function, unicode_literals
 
 from setuptools import setup
