@@ -32,3 +32,17 @@ def file_move(src, dst):
 
 def get_user_home():
     return str(Path.home())
+
+def list_files_in_dir(path):
+    f = []
+    for (dirpath, dirnames, filenames) in os.walk(path):
+        f.extend(filenames)
+        break
+    return f
+
+def list_dirs_in_dir(path):
+    d = []
+    for (dirpath, dirnames, filenames) in os.walk(path):
+        d.extend(dirnames)
+        break
+    return d
