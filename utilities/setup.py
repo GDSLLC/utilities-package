@@ -13,5 +13,8 @@ setup(
     license="license",
     packages=['utilities'],
     zip_safe=False,
-    install_requires=['six', 'bash'],
+    install_requires=[
+        'six',
+        'bash',
+    ],
     )
