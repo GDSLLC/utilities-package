@@ -1,2 +1,7 @@
 click
 requests
+pycontracts
+pytest
+pytest-cov
+black
+flake8
