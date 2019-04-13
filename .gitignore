@@ -1,5 +1,13 @@
-syntax: glob
+.coverage
+logs
+keys.sh
+id_rsa
+id_rsa.pub
 
-## patterns
-*.pyc
+package-lock.json
+__pycache__
+env
+node_modules
 .vagrant
+\#*\#
+*~
