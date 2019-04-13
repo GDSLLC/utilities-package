@@ -1,7 +1,19 @@
 [![CircleCI](https://circleci.com/gh/terminal-labs/utilities-package.svg?style=svg)](https://circleci.com/gh/terminal-labs/utilities-package)
 
-# README
+# Notes
 
-## requirements
+assumes to be running on ubuntu 18.04
 
-This project expects to be run in a python 3.6 virtual env on ubuntu 18.04
+# Development
+
+install dependencies
+
+```
+sudo bash maintenance/install_deps.sh
+```
+
+create virtual environment
+
+```
+sudo bash maintenance/create_venv.sh
+```
