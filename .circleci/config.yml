@@ -10,11 +10,10 @@ jobs:
       - checkout
 
       - run:
-          name: Root Setup
+          name: Install deps
           command: |
-            bash scripts/root-setup.sh
-
+            sudo bash maintenance/install_deps.sh
       - run:
-          name: Non Root Setup
+          name: Create venv
           command: |
-            bash scripts/non-root-setup.sh
+            sudo bash maintenance/create_venv.sh
