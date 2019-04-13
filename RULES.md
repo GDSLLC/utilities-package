@@ -6,5 +6,5 @@
 
 1. Aim for good documentation.
 
-1. More scripts are always welcome.
+1. More tools and features are always welcome. 
 
