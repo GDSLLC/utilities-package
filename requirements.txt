@@ -1,5 +1,7 @@
+flask
 click
 requests
+cherrypy
 pycontracts
 pytest
 pytest-cov
