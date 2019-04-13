@@ -9,7 +9,7 @@ setup(
     name="utilities-package",
     version="0.0.6",
     description="utilities package",
-    url="https://github.com/terminal-labs/utilities",
+    url="https://github.com/terminal-labs/utilities-package",
     author="Terminal Labs",
     author_email="solutions@terminallabs.com",
     license="license",
