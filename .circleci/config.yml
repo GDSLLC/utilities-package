@@ -18,6 +18,10 @@ jobs:
           command: |
             sudo bash maintenance/create_venv.sh
       - run:
+          name: Install app
+          command: |
+            sudo bash maintenance/install_app.sh
+      - run:
           name: Run tests
           command: |
             sudo bash maintenance/test.sh
