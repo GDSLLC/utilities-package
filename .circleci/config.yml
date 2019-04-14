@@ -17,3 +17,7 @@ jobs:
           name: Create venv
           command: |
             sudo bash maintenance/create_venv.sh
+      - run:
+          name: Run tests
+          command: |
+            sudo bash maintenance/test.sh
