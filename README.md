@@ -17,3 +17,9 @@ create virtual environment
 ```
 sudo bash maintenance/create_venv.sh
 ```
+
+activate virtual environment (first cd into the repo) then run
+
+```
+source env/bin/activate
+```
