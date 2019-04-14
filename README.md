@@ -18,6 +18,12 @@ create virtual environment
 sudo bash maintenance/create_venv.sh
 ```
 
+install app
+
+```
+sudo bash maintenance/install_app.sh
+```
+
 activate virtual environment
 
 ```
