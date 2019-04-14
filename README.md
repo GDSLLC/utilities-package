@@ -6,7 +6,7 @@ assumes to be running on ubuntu 18.04
 
 # Development
 
-install dependencies
+(first cd into the repo) then install dependencies
 
 ```
 sudo bash maintenance/install_deps.sh
@@ -18,7 +18,7 @@ create virtual environment
 sudo bash maintenance/create_venv.sh
 ```
 
-activate virtual environment (first cd into the repo) then run
+activate virtual environment
 
 ```
 source env/bin/activate
