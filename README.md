@@ -2,7 +2,7 @@
 
 # Notes
 
-assumes to be running in Python 3.6.7 on ubuntu 18.04
+assumes to be running in the system's default Python 3.6.7 on ubuntu 18.04
 
 # Development
 
