@@ -29,3 +29,7 @@ activate virtual environment
 ```
 source env/bin/activate
 ```
+
+## License
+
+MIT (See LICENSE file).
