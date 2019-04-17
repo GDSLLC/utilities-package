@@ -2,8 +2,8 @@ from itertools import chain
 from functools import wraps
 from collections import defaultdict
 
-from unstdlib.six import string_types
-from unstdlib.six.moves import xrange
+from utilities.six import string_types
+from utilities.six.moves import xrange
 
 
 __all__ = [
