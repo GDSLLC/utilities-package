@@ -3,7 +3,7 @@ click
 requests
 cherrypy
 unstdlib
-yunobuiltin
+yunobuiltin==1.0.0-alpha1
 pycontracts
 pytest
 pytest-cov
