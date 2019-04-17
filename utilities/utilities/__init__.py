@@ -1,4 +1,4 @@
-from utilities.standard import *
+from standard import *
 
 #########
 # start of yunobuiltin code
