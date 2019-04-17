@@ -1,11 +1,7 @@
 from utilities.standard import *
 
-#########
-# start of yunobuiltin code
-
 from collections import (Iterable as __Iterable, Mapping as __Mapping,
                          Sequence as __Sequence, )
-# utility functions that should be builtins
 
 # we import * this namespace, so might as well
 # grab partial, aget, mcall, and iget while we're at it
@@ -753,6 +749,3 @@ def juxt(*funcs):
 
 merge_keep_left = partial(merge_with, lambda x, y: x)
 merge_keep_right = partial(merge_with, lambda x, y: y)
-
-# end of yunobuiltin code
-#########
