@@ -1,3 +1,6 @@
+#########
+# start of yunobuiltin code
+# this is forked from https://github.com/curiosity/yunobuiltin
 # Copyright © 2014, 2015, 2016, 2017 Beacon Solutions, Inc.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
@@ -755,3 +758,6 @@ def juxt(*funcs):
 
 merge_keep_left = partial(merge_with, lambda x, y: x)
 merge_keep_right = partial(merge_with, lambda x, y: y)
+
+# end of yunobuiltin code
+#########
