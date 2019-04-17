@@ -8,7 +8,7 @@ setup(
     author="Terminal Labs",
     author_email="solutions@terminallabs.com",
     license="license",
-    packages=["utilities"],
+    packages=["utilities", "utilities.standard"],
     zip_safe=False,
     install_requires=["six", "bash", "termcolor"],
 )
