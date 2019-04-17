@@ -702,7 +702,7 @@ def better_reduce(f, *xs):
 
         try:
             return reduce(f, coll, init)
-        except Reduced, r:
+        except (Reduced, r):
             return r.val
 
     elif l == 2:
@@ -711,7 +711,7 @@ def better_reduce(f, *xs):
 
         try:
             return reduce(f, coll, init)
-        except Reduced, r:
+        except (Reduced, r):
             return r.val
 
     else:
@@ -720,7 +720,7 @@ def better_reduce(f, *xs):
 
         try:
             return reduce(f, colls, init)
-        except Reduced, r:
+        except (Reduced, r):
             return r.val
 
 
