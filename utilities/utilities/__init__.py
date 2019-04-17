@@ -697,7 +697,7 @@ def better_reduce(f, *xs):
 
         try:
             init = f(x, y)
-        except Reduced, r:
+        except (Reduced, r):
             return r.val
 
         try:
