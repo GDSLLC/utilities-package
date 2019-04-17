@@ -16,6 +16,7 @@ from collections import (Iterable as __Iterable, Mapping as __Mapping,
 # we import * this namespace, so might as well
 # grab partial, aget, mcall, and iget while we're at it
 # ignore pyflakes, we mean to import this to rexport
+from functools import reduce                    # NOQA
 from functools import partial                   # NOQA
 from operator import (attrgetter as aget,       # NOQA
                       itemgetter as iget,       # NOQA
