@@ -10,5 +10,5 @@ setup(
     license="license",
     packages=["utilities", "utilities.standard"],
     zip_safe=False,
-    install_requires=["six", "bash", "termcolor"],
+    install_requires=["six", "bash", "termcolor", "texttable", "beautifulsoup4"],
 )
