@@ -2,8 +2,8 @@ import re
 import string
 import unicodedata
 
-from unstdlib.six import text_type, PY3, string_types, binary_type, u
-from unstdlib.six.moves import xrange
+from utilities.six import text_type, PY3, string_types, binary_type, u
+from utilities.six.moves import xrange
 
 if PY3:
     text_type_magicmethod = "__str__"
