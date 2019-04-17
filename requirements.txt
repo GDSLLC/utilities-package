@@ -1,8 +1,5 @@
-flask
 click
 requests
-cherrypy
-unstdlib
 pycontracts
 pytest
 pytest-cov
