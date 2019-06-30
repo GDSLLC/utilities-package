@@ -5,12 +5,12 @@ assert sys.version_info >= (3, 6, 0)
 
 setup(
     name="utilities-package",
-    version="0.0.6",
+    version="0.0.7",
     description="utilities package",
     url="https://github.com/terminal-labs/utilities-package",
     author="Terminal Labs",
     author_email="solutions@terminallabs.com",
-    license="license",
+    license="see LICENSE file",
     packages=["utilities", "utilities.standard"],
     zip_safe=False,
     install_requires=[
