@@ -4,10 +4,7 @@ import warnings
 from .list_ import iterate_items
 
 
-__all__ = [
-    'memoized', 'memoized_property', 'memoized_method',
-    'assert_hashable', 'deprecated',
-]
+__all__ = ["memoized", "memoized_property", "memoized_method", "assert_hashable", "deprecated"]
 
 
 def assert_hashable(*args, **kw):
@@ -31,12 +28,12 @@ def assert_hashable(*args, **kw):
         for i, arg in enumerate(args):
             hash(arg)
     except TypeError:
-        raise TypeError('Argument in position %d is not hashable: %r' % (i, arg))
+        raise TypeError("Argument in position %d is not hashable: %r" % (i, arg))
     try:
         for key, val in iterate_items(kw):
             hash(val)
     except TypeError:
-        raise TypeError('Keyword argument %r is not hashable: %r' % (key, val))
+        raise TypeError("Keyword argument %r is not hashable: %r" % (key, val))
 
 
 def _memoized_call(fn, cache, *args, **kw):
@@ -114,6 +111,7 @@ def memoized(fn=None, cache=None):
 #   https://twitter.com/zzzeek/status/310503354268790784
 class memoized_property(object):
     """ A read-only @property that is only evaluated once. """
+
     def __init__(self, fget, doc=None, name=None):
         self.fget = fget
         self.__doc__ = doc or fget.__doc__
@@ -187,15 +185,12 @@ def memoized_method(method=None, cache_factory=None):
     @wraps(method)
     def memoized_method_property(self):
         cache = cache_factory()
-        cache_attr = "_%s_cache" %(method.__name__, )
+        cache_attr = "_%s_cache" % (method.__name__,)
         setattr(self, cache_attr, cache)
-        result = partial(
-            _memoized_call,
-            partial(method, self),
-            cache
-        )
+        result = partial(_memoized_call, partial(method, self), cache)
         result.memoize_cache = cache
         return result
+
     return memoized_property(memoized_method_property)
 
 
@@ -224,15 +219,19 @@ def deprecated(message, exception=PendingDeprecationWarning):
         ...     assert foo.__name__ == 'foo'
         8
     """
+
     def decorator(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
             warnings.warn(message, exception, stacklevel=2)
             return func(*args, **kwargs)
+
         return wrapper
+
     return decorator
 
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod(optionflags=doctest.ELLIPSIS)

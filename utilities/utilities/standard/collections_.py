@@ -2,7 +2,7 @@ from collections import MutableMapping, OrderedDict
 from threading import Lock
 
 
-__all__ = ['RecentlyUsedContainer']
+__all__ = ["RecentlyUsedContainer"]
 
 
 _Null = object()
@@ -66,7 +66,7 @@ class RecentlyUsedContainer(MutableMapping):
             return len(self._container)
 
     def __iter__(self):
-        raise NotImplementedError('Iteration over this class is unlikely to be threadsafe.')
+        raise NotImplementedError("Iteration over this class is unlikely to be threadsafe.")
 
     def clear(self):
         with self._lock:

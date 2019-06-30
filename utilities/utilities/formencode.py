@@ -32,4 +32,4 @@ def validate_many(d, schema):
             ('password_confirm', validators.String(min=4)),
         ])
     """
-    return [validator.to_python(d.get(key), state=key) for key,validator in schema]
+    return [validator.to_python(d.get(key), state=key) for key, validator in schema]

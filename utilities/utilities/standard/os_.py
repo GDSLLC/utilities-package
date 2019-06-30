@@ -1,5 +1,6 @@
 import os
 
+
 class chdir(object):
     """ A drop-in replacement for ``os.chdir`` which can also be used as a
     context manager.
@@ -39,10 +40,10 @@ class chdir(object):
         os.chdir(self.old_path)
 
     def __repr__(self):
-        return "%s(%r, old_path=%r)" %(
-            type(self).__name__, self.new_path, self.old_path,
-        )
+        return "%s(%r, old_path=%r)" % (type(self).__name__, self.new_path, self.old_path)
+
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod(optionflags=doctest.ELLIPSIS)

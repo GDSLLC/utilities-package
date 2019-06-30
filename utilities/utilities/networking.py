@@ -11,11 +11,7 @@ def get_primary_address():
         line = line.rstrip()
         if "inet " in line:
             ip = line.split(" ")[1].split("/")[0]
-            if (
-                not ip.startswith("127")
-                and not ip.startswith("10")
-                and not ip.startswith("192.168")
-            ):
+            if not ip.startswith("127") and not ip.startswith("10") and not ip.startswith("192.168"):
                 ip_address_candidates.append(ip)
 
     if "172.28.128.1" in ip_address_candidates:

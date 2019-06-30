@@ -1,6 +1,4 @@
-__all__ = [
-    'get_many', 'pop_many',
-]
+__all__ = ["get_many", "pop_many"]
 
 
 def get_many(d, required=[], optional=[], one_of=[]):
@@ -19,7 +17,7 @@ def get_many(d, required=[], optional=[], one_of=[]):
     """
     d = d or {}
     r = [d[k] for k in required]
-    r += [d.get(k)for k in optional]
+    r += [d.get(k) for k in optional]
 
     if one_of:
         for k in (k for k in one_of if k in d):
@@ -36,4 +34,5 @@ def pop_many(d, keys, default=None):
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod(optionflags=doctest.ELLIPSIS)

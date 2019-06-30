@@ -5,11 +5,13 @@ try:
 except AttributeError:
     replace_func = os.rename
 
+
 def _doctest_setup():
     try:
         os.remove("/tmp/open_atomic-example.txt")
     except OSError:
         pass
+
 
 class open_atomic(object):
     """
@@ -89,8 +91,7 @@ class open_atomic(object):
 
     """
 
-    def __init__(self, name, mode="w", prefix=".", suffix=".temp", dir=None,
-                 opener=open, **open_args):
+    def __init__(self, name, mode="w", prefix=".", suffix=".temp", dir=None, opener=open, **open_args):
         self.target_name = name
         self.temp_name = self._get_temp_name(name, prefix, suffix, dir)
         self.file = opener(self.temp_name, mode, **open_args)
@@ -102,9 +103,7 @@ class open_atomic(object):
     def _get_temp_name(self, target, prefix, suffix, dir):
         if dir is None:
             dir = os.path.dirname(target)
-        return os.path.join(dir, "%s%s%s" %(
-            prefix, os.path.basename(target), suffix,
-        ))
+        return os.path.join(dir, "%s%s%s" % (prefix, os.path.basename(target), suffix))
 
     def close(self):
         if self.closed:

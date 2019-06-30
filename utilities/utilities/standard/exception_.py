@@ -3,7 +3,7 @@ import sys
 from utilities.six import reraise, PY3
 
 
-__all__ = ['convert_exception']
+__all__ = ["convert_exception"]
 
 
 def convert_exception(from_exception, to_exception, *to_args, **to_kw):
@@ -31,8 +31,8 @@ def convert_exception(from_exception, to_exception, *to_args, **to_kw):
         except BarError as e:
             assert e.message == 'bar'
     """
-    def wrapper(fn):
 
+    def wrapper(fn):
         def fn_new(*args, **kw):
             try:
                 return fn(*args, **kw)
@@ -53,4 +53,5 @@ def convert_exception(from_exception, to_exception, *to_args, **to_kw):
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod(optionflags=doctest.ELLIPSIS)

@@ -8,23 +8,20 @@ from unstdlib.standard.list_ import iterate_items, iterate
 
 try:
     import markupsafe
+
     MarkupType = markupsafe.Markup
 except ImportError:
     MarkupType = unicode
 
 
-
-__all__ = [
-    'get_cache_buster', 'literal', 'tag', 'tag_builder',
-    'javascript_link', 'stylesheet_link',
-]
+__all__ = ["get_cache_buster", "literal", "tag", "tag_builder", "javascript_link", "stylesheet_link"]
 
 
 @memoized
 def _cache_key_by_md5(src_path, chunk_size=65536):
     hash = hashlib.md5()
-    with open(src_path, 'rb') as f:
-        for chunk in iter(lambda: f.read(65536), ''):
+    with open(src_path, "rb") as f:
+        for chunk in iter(lambda: f.read(65536), ""):
             hash.update(chunk)
     return hash.hexdigest()
 
@@ -36,14 +33,10 @@ def _cache_key_by_mtime(src_path):
 
 _IMPORT_TIME = str(int(time.time()))
 
-_BUST_METHODS = {
-    'mtime': _cache_key_by_mtime,
-    'md5': _cache_key_by_md5,
-    'importtime': lambda src_path: _IMPORT_TIME,
-}
+_BUST_METHODS = {"mtime": _cache_key_by_mtime, "md5": _cache_key_by_md5, "importtime": lambda src_path: _IMPORT_TIME}
 
 
-def get_cache_buster(src_path, method='importtime'):
+def get_cache_buster(src_path, method="importtime"):
     """ Return a string that can be used as a parameter for cache-busting URLs
     for this asset.
 
@@ -70,7 +63,7 @@ def get_cache_buster(src_path, method='importtime'):
     try:
         fn = _BUST_METHODS[method]
     except KeyError:
-        raise KeyError('Unsupported busting method value: %s' % method)
+        raise KeyError("Unsupported busting method value: %s" % method)
 
     return fn(src_path)
 
@@ -100,11 +93,12 @@ class literal(MarkupType):
     escaped. Will use `MarkupSafe` if available, otherwise it's a dumb
     unicode-like object.
     """
+
     def __html__(self):
         return self
 
 
-def tag(tagname, content='', attrs=None):
+def tag(tagname, content="", attrs=None):
     """ Helper for programmatically building HTML tags.
 
     Note that this barely does any escaping, and will happily spit out
@@ -134,16 +128,16 @@ def tag(tagname, content='', attrs=None):
         >>> tag('ul', (tag('li', str(i)) for i in xrange(3)))
         u'<ul><li>0</li><li>1</li><li>2</li></ul>'
     """
-    attrs_str = attrs and ' '.join(_generate_dom_attrs(attrs))
+    attrs_str = attrs and " ".join(_generate_dom_attrs(attrs))
     open_tag = tagname
     if attrs_str:
-        open_tag += ' ' + attrs_str
+        open_tag += " " + attrs_str
 
     if content is None:
-        return literal('<%s />' % open_tag)
+        return literal("<%s />" % open_tag)
 
-    content = ''.join(iterate(content, unless=(basestring, literal)))
-    return literal('<%s>%s</%s>' % (open_tag, content, tagname))
+    content = "".join(iterate(content, unless=(basestring, literal)))
+    return literal("<%s>%s</%s>" % (open_tag, content, tagname))
 
 
 def tag_builder(tagnames):
@@ -161,7 +155,7 @@ def tag_builder(tagnames):
     return [functools.partial(tag, t) for t in tagnames]
 
 
-def javascript_link(src_url, src_path=None, cache_bust=None, content='', extra_attrs=None):
+def javascript_link(src_url, src_path=None, cache_bust=None, content="", extra_attrs=None):
     """ Helper for programmatically building HTML JavaScript source include
     links, with optional cache busting.
 
@@ -189,20 +183,17 @@ def javascript_link(src_url, src_path=None, cache_bust=None, content='', extra_a
     """
     if cache_bust:
         append_suffix = get_cache_buster(src_path=src_path, method=cache_bust)
-        delim = '&' if '?' in src_url else '?'
+        delim = "&" if "?" in src_url else "?"
         src_url += delim + append_suffix
 
-    attrs = {
-        'src': src_url,
-        'type': 'text/javascript',
-    }
+    attrs = {"src": src_url, "type": "text/javascript"}
     if extra_attrs:
         attrs.update(extra_attrs)
 
-    return tag('script', content=content, attrs=attrs)
+    return tag("script", content=content, attrs=attrs)
 
 
-def stylesheet_link(src_url, src_path=None, cache_bust=None, content='', extra_attrs=None):
+def stylesheet_link(src_url, src_path=None, cache_bust=None, content="", extra_attrs=None):
     """ Helper for programmatically building HTML StyleSheet source include
     links, with optional cache busting.
 
@@ -230,19 +221,17 @@ def stylesheet_link(src_url, src_path=None, cache_bust=None, content='', extra_a
     """
     if cache_bust:
         append_suffix = get_cache_buster(src_path=src_path, method=cache_bust)
-        delim = '&' if '?' in src_url else '?'
+        delim = "&" if "?" in src_url else "?"
         src_url += delim + append_suffix
 
-    attrs = {
-        'href': src_url,
-        'rel': 'stylesheet',
-    }
+    attrs = {"href": src_url, "rel": "stylesheet"}
     if extra_attrs:
         attrs.update(extra_attrs)
 
-    return tag('link', content=content, attrs=attrs)
+    return tag("link", content=content, attrs=attrs)
 
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod(optionflags=doctest.ELLIPSIS)

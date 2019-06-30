@@ -14,40 +14,49 @@ from .random_ import random
 
 
 __all__ = [
-    'random_string',
-    'number_to_string', 'string_to_number', 'number_to_bytes', 'bytes_to_number',
-    'dollars_to_cents',
-    'to_str', 'to_unicode', 'to_int', 'to_float',
-    'format_int',
-    'slugify',
+    "random_string",
+    "number_to_string",
+    "string_to_number",
+    "number_to_bytes",
+    "bytes_to_number",
+    "dollars_to_cents",
+    "to_str",
+    "to_unicode",
+    "to_int",
+    "to_float",
+    "format_int",
+    "slugify",
 ]
+
 
 class r(object):
     """
     A normalized repr for bytes/unicode between Python2 and Python3.
     """
+
     def __init__(self, val):
         self.val = val
 
     def __repr__(self):
         if PY3:
             if isinstance(self.val, text_type):
-                return 'u' + repr(self.val)
+                return "u" + repr(self.val)
         else:
             if isinstance(self.val, str):
-                return 'b' + repr(self.val)
+                return "b" + repr(self.val)
         return repr(self.val)
 
 
 _Default = object()
 
-def random_string(length=6, alphabet=string.ascii_letters+string.digits):
+
+def random_string(length=6, alphabet=string.ascii_letters + string.digits):
     """
     Return a random string of given length and alphabet.
 
     Default alphabet is url-friendly (base62).
     """
-    return ''.join([random.choice(alphabet) for i in xrange(length)])
+    return "".join([random.choice(alphabet) for i in xrange(length)])
 
 
 def number_to_string(n, alphabet):
@@ -71,7 +80,7 @@ def number_to_string(n, alphabet):
         'one two three four five '
 
     """
-    result = ''
+    result = ""
     base = len(alphabet)
     current = int(n)
     if current < 0:
@@ -112,7 +121,7 @@ def string_to_number(s, alphabet):
     return n
 
 
-def bytes_to_number(b, endian='big'):
+def bytes_to_number(b, endian="big"):
     """
     Convert a string to an integer.
 
@@ -139,7 +148,7 @@ def bytes_to_number(b, endian='big'):
         >>> bytes_to_number(b'\\x00\\x01', endian='little')
         256
     """
-    if endian == 'big':
+    if endian == "big":
         b = reversed(b)
 
     n = 0
@@ -149,7 +158,7 @@ def bytes_to_number(b, endian='big'):
     return n
 
 
-def number_to_bytes(n, endian='big'):
+def number_to_bytes(n, endian="big"):
     """
     Convert an integer to a corresponding string of bytes..
 
@@ -184,16 +193,16 @@ def number_to_bytes(n, endian='big'):
         else:
             res.append(chr(ch))
 
-    if endian == 'big':
+    if endian == "big":
         res.reverse()
 
     if PY3:
         return bytes(res)
     else:
-        return ''.join(res)
+        return "".join(res)
 
 
-def to_str(obj, encoding='utf-8', **encode_args):
+def to_str(obj, encoding="utf-8", **encode_args):
     r"""
     Returns a ``str`` of ``obj``, encoding using ``encoding`` if necessary. For
     example::
@@ -227,7 +236,7 @@ def to_str(obj, encoding='utf-8', **encode_args):
     return binary_type(obj)
 
 
-def to_unicode(obj, encoding='utf-8', fallback='latin1', **decode_args):
+def to_unicode(obj, encoding="utf-8", fallback="latin1", **decode_args):
     r"""
     Returns a ``unicode`` of ``obj``, decoding using ``encoding`` if necessary.
     If decoding fails, the ``fallback`` encoding (default ``latin1``) is used.
@@ -289,7 +298,8 @@ def to_int(s, default=0):
         return default
 
 
-_infs=set([float("inf"), float("-inf")])
+_infs = set([float("inf"), float("-inf")])
+
 
 def to_float(s, default=0.0, allow_nan=False):
     """
@@ -364,10 +374,10 @@ def format_int(n, singular=_Default, plural=_Default):
         if plural is _Default:
             plural = None
 
-        singular = u'{:,}'
+        singular = u"{:,}"
 
     elif plural is _Default:
-        plural = singular + u's'
+        plural = singular + u"s"
 
     if n == 1 or not plural:
         return singular.format(n)
@@ -375,8 +385,8 @@ def format_int(n, singular=_Default, plural=_Default):
     return plural.format(n)
 
 
+RE_NUMBER = re.compile(r"[\d\.\-eE]+")
 
-RE_NUMBER = re.compile(r'[\d\.\-eE]+')
 
 def dollars_to_cents(s, allow_negative=False):
     """
@@ -406,25 +416,27 @@ def dollars_to_cents(s, allow_negative=False):
         return
 
     if isinstance(s, string_types):
-        s = ''.join(RE_NUMBER.findall(s))
+        s = "".join(RE_NUMBER.findall(s))
 
     dollars = int(round(float(s) * 100))
     if not allow_negative and dollars < 0:
-        raise ValueError('Negative values not permitted.')
+        raise ValueError("Negative values not permitted.")
 
     return dollars
 
 
-RE_SLUG = re.compile(r'\W+')
+RE_SLUG = re.compile(r"\W+")
 
-def slugify(s, delimiter='-'):
+
+def slugify(s, delimiter="-"):
     """
     Normalize `s` into ASCII and replace non-word characters with `delimiter`.
     """
-    s = unicodedata.normalize('NFKD', to_unicode(s)).encode('ascii', 'ignore').decode('ascii')
+    s = unicodedata.normalize("NFKD", to_unicode(s)).encode("ascii", "ignore").decode("ascii")
     return RE_SLUG.sub(delimiter, s).strip(delimiter).lower()
 
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod(optionflags=doctest.ELLIPSIS)

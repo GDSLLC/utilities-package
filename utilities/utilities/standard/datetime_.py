@@ -2,9 +2,15 @@ import calendar
 import datetime
 
 
-__all__ = ['iterate_date', 'iterate_date_values', 'isoformat_as_datetime',
-           'truncate_datetime', 'now', 'datetime_from_timestamp',
-           'timestamp_from_datetime']
+__all__ = [
+    "iterate_date",
+    "iterate_date_values",
+    "isoformat_as_datetime",
+    "truncate_datetime",
+    "now",
+    "datetime_from_timestamp",
+    "timestamp_from_datetime",
+]
 
 
 def iterate_date(start, stop=None, step=datetime.timedelta(days=1)):
@@ -47,7 +53,7 @@ def isoformat_as_datetime(s):
     """
     Convert a datetime.datetime.isoformat() string to a datetime.datetime() object.
     """
-    return datetime.datetime.strptime(s, '%Y-%m-%dT%H:%M:%SZ')
+    return datetime.datetime.strptime(s, "%Y-%m-%dT%H:%M:%SZ")
 
 
 def truncate_datetime(t, resolution):
@@ -72,7 +78,7 @@ def truncate_datetime(t, resolution):
 
     """
 
-    resolutions = ['year', 'month', 'day', 'hour', 'minute', 'second', 'microsecond']
+    resolutions = ["year", "month", "day", "hour", "minute", "second", "microsecond"]
     if resolution not in resolutions:
         raise KeyError("Resolution is not valid: {0}".format(resolution))
 
@@ -83,6 +89,7 @@ def truncate_datetime(t, resolution):
             break
 
     return datetime.datetime(*args)
+
 
 def to_timezone(dt, timezone):
     """
@@ -98,6 +105,7 @@ def to_timezone(dt, timezone):
     if dt.tzinfo is None:
         dt = dt.replace(tzinfo=_UTC)
     return timezone.normalize(dt.astimezone(timezone))
+
 
 def now(timezone=None):
     """
@@ -115,6 +123,7 @@ def now(timezone=None):
 
     return to_timezone(d, timezone).replace(tzinfo=None)
 
+
 def datetime_from_timestamp(timestamp):
     """
     Returns a naive datetime from ``timestamp``.
@@ -123,6 +132,7 @@ def datetime_from_timestamp(timestamp):
     datetime.datetime(1970, 1, 1, 0, 20, 34, 500000)
     """
     return datetime.datetime.utcfromtimestamp(timestamp)
+
 
 def timestamp_from_datetime(dt):
     """
@@ -136,9 +146,11 @@ def timestamp_from_datetime(dt):
     """
     return calendar.timegm(dt.utctimetuple()) + (dt.microsecond / 1000000.0)
 
+
 # Built-in timezone for when pytz isn't available:
 
 _ZERO = datetime.timedelta(0)
+
 
 class _UTC(datetime.tzinfo):
     """
@@ -162,4 +174,5 @@ class _UTC(datetime.tzinfo):
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod(optionflags=doctest.ELLIPSIS)

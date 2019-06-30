@@ -1,7 +1,8 @@
-__all__ = ['is_subclass']
+__all__ = ["is_subclass"]
 
 
 _issubclass = issubclass
+
 
 def is_subclass(o, bases):
     """
@@ -37,4 +38,5 @@ def is_subclass(o, bases):
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod(optionflags=doctest.ELLIPSIS)

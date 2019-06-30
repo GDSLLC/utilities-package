@@ -6,11 +6,7 @@ from utilities.six import string_types
 from utilities.six.moves import xrange
 
 
-__all__ = [
-    'groupby_count',
-    'iterate', 'is_iterable', 'iterate_chunks', 'iterate_items', 'iterate_flatten',
-    'listify',
-]
+__all__ = ["groupby_count", "iterate", "is_iterable", "iterate_chunks", "iterate_items", "iterate_flatten", "listify"]
 
 
 def groupby_count(i, key=None, force_keys=None):
@@ -100,9 +96,9 @@ def iterate_items(dictish):
         >>> list(iterate_items([('a', 1), ('b', 2)]))
         [('a', 1), ('b', 2)]
     """
-    if hasattr(dictish, 'iteritems'):
+    if hasattr(dictish, "iteritems"):
         return dictish.iteritems()
-    if hasattr(dictish, 'items'):
+    if hasattr(dictish, "items"):
         return dictish.items()
     return dictish
 
@@ -121,7 +117,7 @@ def iterate_chunks(i, size=10):
 
     for n, i in enumerate(i):
         accumulator.append(i)
-        if (n+1) % size == 0:
+        if (n + 1) % size == 0:
             yield accumulator
             accumulator = []
 
@@ -169,11 +165,14 @@ def listify(fn=None, wrapper=list):
         >>> get_lengths_tuple(["foo", "bar"])
         (3, 3)
     """
+
     def listify_return(fn):
         @wraps(fn)
         def listify_helper(*args, **kw):
             return wrapper(fn(*args, **kw))
+
         return listify_helper
+
     if fn is None:
         return listify_return
     return listify_return(fn)
@@ -181,4 +180,5 @@ def listify(fn=None, wrapper=list):
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod(optionflags=doctest.ELLIPSIS)

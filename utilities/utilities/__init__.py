@@ -1,22 +1,22 @@
+# black --line-length 150 .
+# flake8 --max-line-length=150 .
 from utilities.standard import *
 
-from collections import (Iterable as __Iterable, Mapping as __Mapping,
-                         Sequence as __Sequence, )
+from collections import Iterable as __Iterable, Mapping as __Mapping, Sequence as __Sequence
 
 # we import * this namespace, so might as well
 # grab partial, aget, mcall, and iget while we're at it
 # ignore pyflakes, we mean to import this to rexport
-from functools import reduce                    # NOQA
-from functools import partial                   # NOQA
-from operator import (attrgetter as aget,       # NOQA
-                      itemgetter as iget,       # NOQA
-                      methodcaller as mcall, )  # NOQA
+from functools import reduce  # NOQA
+from functools import partial  # NOQA
+from operator import attrgetter as aget, itemgetter as iget, methodcaller as mcall  # NOQA  # NOQA  # NOQA
 
 
 def gensym():
     "Generates a unique symbol that is a valid python identifier"
     from uuid import uuid4
-    return str(uuid4()).replace('-', '_')
+
+    return str(uuid4()).replace("-", "_")
 
 
 def isa(value, target):
@@ -84,9 +84,11 @@ class MultiFn(object):
 
     def method(self, target):
         "Decorator to register a new method for a dispatch target"
+
         def decorator(f):
             self.register_method(target, f)
             return f
+
         return decorator
 
     def register_default(self, f):
@@ -118,7 +120,7 @@ class MultiFn(object):
     def prefer(self, class1, class2):
         "Prefers class1 over class2"
         if class1 == class2:
-            raise ValueError('class1 cannot == class2')
+            raise ValueError("class1 cannot == class2")
         # search for class1 and class2 in dispatch_alist
         p1 = False
         p2 = False
@@ -130,9 +132,9 @@ class MultiFn(object):
             if p1 and p2:
                 break
         if not p1:
-            raise ValueError('class1 is not registered!')
+            raise ValueError("class1 is not registered!")
         if not p2:
-            raise ValueError('class2 is not registered!')
+            raise ValueError("class2 is not registered!")
         # register the preference
         self.dispatch_prefers.append((class1, class2))
 
@@ -171,11 +173,13 @@ def merge_with(f, *dicts):
 
 def deep_merge_with(f, *dicts):
     """ Merges dicts recursively, resolving node conflicts using f """
+
     def _deep_merge_with(*ds):
         if all([isinstance(d, __Mapping) for d in ds]):
             return merge_with(_deep_merge_with, *ds)
         else:
             return f(*ds)
+
     return _deep_merge_with(*dicts)
 
 
@@ -321,11 +325,7 @@ def update_in(obj, keys, fn, *args, **kwargs):
     """
     k, ks = keys[0], keys[1:]
     if ks:
-        return assoc(obj, k, update_in(get(obj, k),
-                                       ks,
-                                       fn,
-                                       *args,
-                                       **kwargs))
+        return assoc(obj, k, update_in(get(obj, k), ks, fn, *args, **kwargs))
     return assoc(obj, k, fn(get(obj, k), *args, **kwargs))
 
 
@@ -337,11 +337,7 @@ def update_deep_in(obj, keys, fn, *args, **kwargs):
     """
     k, ks = keys[0], keys[1:]
     if ks:
-        return assoc_deep(obj, k, update_deep_in(get(obj, k),
-                                                 ks,
-                                                 fn,
-                                                 *args,
-                                                 **kwargs))
+        return assoc_deep(obj, k, update_deep_in(get(obj, k), ks, fn, *args, **kwargs))
     return assoc_deep(obj, k, fn(get(obj, k), *args, **kwargs))
 
 
@@ -363,6 +359,7 @@ def dissoc(obj, *ks):
 def dissoc_deep(obj, *ks):
     """ Return a copy of obj without k """
     from copy import deepcopy
+
     obj = deepcopy(obj)
     for k in ks:
         try:
@@ -476,6 +473,7 @@ def prepend(v, l):
         tmp.extend(l)
         return tmp
     else:
+
         def generator():
             yield v
             try:
@@ -483,9 +481,12 @@ def prepend(v, l):
                     yield x
             except TypeError:
                 pass
+
         return generator()
 
+
 cons = prepend
+
 
 def append(l, *vs):
     """ Given an iterable or a list, append values to it.
@@ -498,6 +499,7 @@ def append(l, *vs):
         l.extend(vs)
         return l
     else:
+
         def generator():
             try:
                 for x in l:
@@ -506,7 +508,9 @@ def append(l, *vs):
                 pass
             for v in vs:
                 yield v
+
         return generator()
+
 
 conj = append
 
@@ -522,6 +526,7 @@ def concat(*items):
                 yield x
         else:
             yield item
+
 
 flatten1 = compose(list, concat)
 flatten1.__doc__ = "Expands iterable items (via iteration, this means keys for dicts) into a concrete list"
@@ -584,17 +589,16 @@ def flatten(xs):
 
 
 def group_by_and_transform(grouper, transformer, iterable):
-        """ Sort & Group iterable by grouper, apply transformer to each group.
+    """ Sort & Group iterable by grouper, apply transformer to each group.
 
         Grouper must be a function that takes an item in the iterable and
         returns a sort key.
 
         Returns a dictionary of group keys matched to lists.
         """
-        from itertools import groupby
-        return {key: map(transformer, group)
-                for key, group in groupby(sorted(iterable, key=grouper),
-                                          key=grouper)}
+    from itertools import groupby
+
+    return {key: map(transformer, group) for key, group in groupby(sorted(iterable, key=grouper), key=grouper)}
 
 
 def group_by(f, i):
@@ -643,6 +647,7 @@ class Reduced(BaseException):
     Inherits from BaseException so normal Exception catches won't accidentally
     catch this.
     """
+
     def __init__(self, val):
         self.val = val
 
@@ -720,8 +725,10 @@ def better_reduce(f, *xs):
 
 def better_map(f, *colls):
     "Higher arity version of map implemented via better_reduce"
+
     def mapper(r, xs):
         return conj(r, f(*xs))
+
     return better_reduce(mapper, [], *colls)
 
 
@@ -743,9 +750,12 @@ def new_tuple(*xs):
 
 def juxt(*funcs):
     """ Returns a function that juxtposes values onto the passed functions. """
+
     def juxt_wrapper(*args, **kwargs):
         return [f(*args, **kwargs) for f in funcs]
+
     return juxt_wrapper
+
 
 merge_keep_left = partial(merge_with, lambda x, y: x)
 merge_keep_right = partial(merge_with, lambda x, y: y)

@@ -1,7 +1,7 @@
 from itertools import count
 
 
-__all__ = ['enumerate_query_by_limit']
+__all__ = ["enumerate_query_by_limit"]
 
 
 def enumerate_query_by_limit(q, limit=1000):
