@@ -1,14 +1,19 @@
-export PY_ENV_VERSION=3.6.6
-export SERVICE_USER=vagrant
+su -m vagrant <<'EOF'
+  export PY_ENV_VERSION=3.6.6
+  export SERVICE_USER=vagrant
+  export PY_ENV_VERSION=3.6.6
+  export SERVICE_USER=vagrant
+  export PYENV_ROOT="/home/vagrant/.pyenv"
+  export PATH="${PYENV_ROOT}/bin:${PATH}"
+  export USE_GIT_URI="true"
 
-PATH=/home/${SERVICE_USER}/.pyenv/bin:$PATH
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+  pyenv install -s ${PY_ENV_VERSION}
+  pyenv global ${PY_ENV_VERSION}
+  pyenv global
 
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-pyenv install -s ${PY_ENV_VERSION}
-pyenv global ${PY_ENV_VERSION}
-pyenv global
-
-utilitiespackage system version
-utilitiespackage system selftest
-utilitiespackage system selfcoverage
+  utilitiespackage system version
+  utilitiespackage system selftest
+  utilitiespackage system selfcoverage
+EOF
