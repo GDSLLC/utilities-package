@@ -2,33 +2,7 @@
 
 # Notes
 
-assumes to be running in the system's default Python 3.6.7 on ubuntu 18.04
-
-# Development
-
-(first cd into the repo) then install dependencies
-
-```
-sudo bash maintenance/install_deps.sh
-```
-
-create virtual environment
-
-```
-sudo bash maintenance/create_venv.sh
-```
-
-install app
-
-```
-sudo bash maintenance/install_app.sh
-```
-
-activate virtual environment
-
-```
-source env/bin/activate
-```
+Assumes to be running in ubuntu 18.04
 
 ## License
 
