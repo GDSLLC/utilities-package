@@ -27,4 +27,4 @@ jobs:
       - run:
           name: Run tests
           command: |
-            cd /vagrant; sudo bash maintenance/test.sh
+            cd /vagrant; sudo bash maintenance/runt_tests.sh
