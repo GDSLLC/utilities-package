@@ -1,18 +1,21 @@
 import sys
 from setuptools import setup
 
-assert sys.version_info >= (3, 6, 0)
+from utilities.settings import *
+
+assert sys.version_info >= MINIMUM_PYTHON_VERSION
 
 setup(
     name="utilities-package",
-    version="0.0.7",
+    version=VERSION,
     description="utilities package",
     url="https://github.com/terminal-labs/utilities-package",
     author="Terminal Labs",
     author_email="solutions@terminallabs.com",
     license="see LICENSE file",
-    packages=["utilities", "utilities.standard"],
+    packages=["utilities", "utilities.standard", "utilities.tests"],
     zip_safe=False,
+    include_package_data=True,
     install_requires=[
         "scipy",
         "setuptools",
@@ -52,4 +55,8 @@ setup(
         "radon",
         "cli-passthrough",
     ],
+    entry_points="""
+        [console_scripts]
+        utilitiespackage=utilities.__main__:main
+    """,
 )
