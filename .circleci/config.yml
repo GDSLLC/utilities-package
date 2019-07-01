@@ -19,7 +19,7 @@ jobs:
       - run:
           name: Install python
           command: |
-            cd /vagrant; sudo bash install_python.sh
+            cd /vagrant; sudo bash maintenance/install_python.sh
       - run:
           name: Create venv
           command: |
