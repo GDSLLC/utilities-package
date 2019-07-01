@@ -21,10 +21,6 @@ jobs:
           command: |
             cd /vagrant; sudo bash maintenance/install_python.sh
       - run:
-          name: Create venv
-          command: |
-            cd /vagrant; sudo bash maintenance/create_venv.sh
-      - run:
           name: Install app
           command: |
             cd /vagrant; sudo bash maintenance/install_app.sh
