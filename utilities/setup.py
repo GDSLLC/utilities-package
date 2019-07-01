@@ -14,6 +14,7 @@ setup(
     packages=["utilities", "utilities.standard"],
     zip_safe=False,
     install_requires=[
+        "scipy",
         "setuptools",
         "six",
         "bash",
