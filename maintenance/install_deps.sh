@@ -18,6 +18,14 @@ apt install -y --quiet ca-certificates
 apt install -y build-essential
 apt install -y linux-headers-$(uname -r)
 
+apt install -y \
+    libssl-dev \
+    zlib1g-dev \
+    libbz2-dev \
+    libreadline-dev \
+    libsqlite3-dev \
+    libffi-dev
+
 apt install -y wget
 apt install -y nano
 apt install -y emacs
