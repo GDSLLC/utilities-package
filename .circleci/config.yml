@@ -15,16 +15,20 @@ jobs:
       - run:
           name: Install deps
           command: |
-            sudo bash maintenance/install_deps.sh
+            cd /vagrant; sudo bash maintenance/install_deps.sh
+      - run:
+          name: Install python
+          command: |
+            cd /vagrant; sudo bash install_python.sh
       - run:
           name: Create venv
           command: |
-            sudo bash maintenance/create_venv.sh
+            cd /vagrant; sudo bash maintenance/create_venv.sh
       - run:
           name: Install app
           command: |
-            sudo bash maintenance/install_app.sh
+            cd /vagrant; sudo bash maintenance/install_app.sh
       - run:
           name: Run tests
           command: |
-            sudo bash maintenance/test.sh
+            cd /vagrant; sudo bash maintenance/test.sh
