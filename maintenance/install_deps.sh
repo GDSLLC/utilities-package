@@ -24,7 +24,9 @@ apt install -y \
     libbz2-dev \
     libreadline-dev \
     libsqlite3-dev \
-    libffi-dev
+    libffi-dev \
+    zip \
+    unzip \
 
 apt install -y wget
 apt install -y nano
