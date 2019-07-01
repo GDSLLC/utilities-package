@@ -1,11 +1,17 @@
+# start of section that inherits sudo
+DEBIAN_FRONTEND=noninteractive apt -y -o DPkg::options::="--force-confdef" -o DPkg::options::="--force-confold" update
+DEBIAN_FRONTEND=noninteractive apt -y -o DPkg::options::="--force-confdef" -o DPkg::options::="--force-confold" upgrade
+
+apt-get update -y --quiet
+apt-get upgrade -y --quiet
+
 apt update -y --quiet
 apt upgrade -y --quiet
 
+apt-get install -y -f
 apt install -y -f
 
 apt install -y --quiet ca-certificates
-
-DEBIAN_FRONTEND=noninteractive apt -y -q -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" full-upgrade
 
 apt install -y build-essential
 apt install -y linux-headers-$(uname -r)
