@@ -13,6 +13,7 @@ extra
 \#*\#
 *~
 *egg-info
+*.pex
 
 run
 tmp
