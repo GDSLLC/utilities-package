@@ -6,7 +6,7 @@ if sys.version_info.major < 3:
 import os
 import json
 
-from utilities.fs import list_files_in_dir, list_dirs_in_dir
+from utilitiespackage.fs import list_files_in_dir, list_dirs_in_dir
 
 
 def get_json_dict_from_dir(name, dir):

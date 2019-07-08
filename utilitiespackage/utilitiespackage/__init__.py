@@ -1,6 +1,6 @@
 # black --line-length 150 .
 # flake8 --max-line-length=150 .
-from utilities.standard import *
+from utilitiespackage.standard import *
 
 from collections import Iterable as __Iterable, Mapping as __Mapping, Sequence as __Sequence
 

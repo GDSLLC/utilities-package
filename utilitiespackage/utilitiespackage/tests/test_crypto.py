@@ -1,4 +1,4 @@
-from utilities.crypto import aes_encrypt, aes_decrypt
+from utilitiespackage.crypto import aes_encrypt, aes_decrypt
 
 
 def test_aes_encrypt():

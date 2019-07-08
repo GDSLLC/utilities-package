@@ -1,4 +1,4 @@
-from utilities.derived_settings import APPDIR, SETUPFILEDIR, TESTDIR, MEMTEMPDIR
+from utilitiespackage.derived_settings import APPDIR, SETUPFILEDIR, TESTDIR, MEMTEMPDIR
 
 VERSION = "0.0.8"
 PRINT_VERBOSITY = "high"

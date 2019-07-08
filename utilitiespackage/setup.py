@@ -1,7 +1,7 @@
 import sys
 from setuptools import setup
 
-from utilities.settings import *
+from utilitiespackage.settings import *
 
 assert sys.version_info >= MINIMUM_PYTHON_VERSION
 
@@ -13,7 +13,7 @@ setup(
     author="Terminal Labs",
     author_email="solutions@terminallabs.com",
     license="see LICENSE file",
-    packages=["utilities", "utilities.standard", "utilities.tests"],
+    packages=["utilitiespackage", "utilitiespackage.standard", "utilitiespackage.tests"],
     zip_safe=False,
     include_package_data=True,
     install_requires=[
@@ -57,6 +57,6 @@ setup(
     ],
     entry_points="""
         [console_scripts]
-        utilitiespackage=utilities.__main__:main
+        utilitiespackage=utilitiespackage.__main__:main
     """,
 )

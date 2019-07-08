@@ -3,7 +3,7 @@ import click
 import pytest
 import requests
 
-from utilities.settings import *
+from utilitiespackage.settings import *
 
 
 @click.group()
@@ -29,7 +29,7 @@ def selftest_command():
 @system_group.command(name="selfcoverage")
 def selfcoverage_command():
     os.chdir(APPDIR)
-    pytest.main([f"--cov-config={COVERAGERC_PATH}", "--cov=utilities", "--cov-report", "term-missing", APPDIR])
+    pytest.main([f"--cov-config={COVERAGERC_PATH}", "--cov=utilitiespackage", "--cov-report", "term-missing", APPDIR])
 
 cli.add_command(system_group)
 main = cli
