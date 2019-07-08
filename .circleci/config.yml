@@ -23,12 +23,12 @@ jobs:
       - run:
           name: Install python
           command: |
-            cd /vagrant; sudo bash aintenance/general/pyenv/install_python.sh utilitiespackage vagrant vagrant
+            cd /vagrant; sudo bash maintenance/general/pyenv/install_python.sh utilitiespackage vagrant vagrant
       - run:
           name: Install app
           command: |
-            cd /vagrant; sudo bash aintenance/general/pyenv/install_app.sh utilitiespackage vagrant vagrant
+            cd /vagrant; sudo bash maintenance/general/pyenv/install_app.sh utilitiespackage vagrant vagrant
       - run:
           name: Run tests
           command: |
-            cd /vagrant; sudo bash aintenance/general/pyenv/run_tests.sh utilitiespackage vagrant vagrant
+            cd /vagrant; sudo bash maintenance/general/pyenv/run_tests.sh utilitiespackage vagrant vagrant
