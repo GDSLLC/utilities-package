@@ -15,16 +15,16 @@ jobs:
       - run:
           name: Install deps
           command: |
-            cd /vagrant; sudo bash maintenance/install_deps.sh
+            cd /vagrant; sudo bash maintenance/general/pyenv/install_apt_dependencies.sh utilitiespackage vagrant vagrant
       - run:
           name: Install python
           command: |
-            cd /vagrant; sudo bash maintenance/install_python.sh
+            cd /vagrant; sudo bash aintenance/general/pyenv/install_python.sh utilitiespackage vagrant vagrant
       - run:
           name: Install app
           command: |
-            cd /vagrant; sudo bash maintenance/install_app.sh
+            cd /vagrant; sudo bash aintenance/general/pyenv/install_app.sh utilitiespackage vagrant vagrant
       - run:
           name: Run tests
           command: |
-            cd /vagrant; sudo bash maintenance/run_tests.sh
+            cd /vagrant; sudo bash aintenance/general/pyenv/run_tests.sh utilitiespackage vagrant vagrant
