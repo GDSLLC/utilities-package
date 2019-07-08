@@ -15,6 +15,7 @@ extra
 *egg-info
 *.pex
 
+maintenance
 run
 tmp
 *keys.sh
