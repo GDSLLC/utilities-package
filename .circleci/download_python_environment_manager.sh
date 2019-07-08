@@ -1,4 +1,3 @@
-apt install -y unzip
 su -m vagrant <<'EOF'
   cd /vagrant
   mkdir -p .tmp
@@ -8,4 +7,6 @@ su -m vagrant <<'EOF'
   cp -r python-environment-manager-master/maintenance/. ../maintenance
   rm -rf python-environment-manager-master
   rm master.zip
+  cd ..
+  ls
 EOF
