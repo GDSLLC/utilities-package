@@ -6,16 +6,16 @@ help:
 
 # mac-pyenv:
 # 	@sudo bash maintenance/mac/pyenv/build.sh pyvirtualbox $(SUDO_USER)
-# 
+#
 # mac-test:
 # 	@sudo bash maintenance/mac/pyenv/run_tests.sh pyvirtualbox $(SUDO_USER)
-# 
+#
 # mac-conda:
 # 	@sudo bash maintenance/mac/conda/build.sh pyvirtualbox $(SUDO_USER)
-# 
+#
 # mac-conda-test:
 # 	@sudo bash maintenance/mac/conda/run_tests.sh pyvirtualbox $(SUDO_USER)
-# 
+#
 # test:
 # 	@sudo bash maintenance/vagrant/pyenv/run_tests.sh pyvirtualbox $(SUDO_USER)
 
@@ -38,9 +38,10 @@ vagrant-conda: download_python_environment_manager
 
 mac-pyenv: download_python_environment_manager
 	@sudo bash maintenance/general/pyenv/build.sh $(APPNAME) $(SUDO_USER) mac
-	
+
 mac-conda: download_python_environment_manager
 	@sudo bash maintenance/general/conda/build.sh $(APPNAME) $(SUDO_USER) mac
-	
+
 linux-pyenv: download_python_environment_manager
 	@sudo bash maintenance/general/pyenv/build.sh $(APPNAME) $(SUDO_USER) linux
+	@echo "export APPNAME=utilitiespackage; export USERNAME=user; export PLATFROM=linux"
