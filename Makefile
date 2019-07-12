@@ -29,4 +29,3 @@ mac-conda: download_python_environment_manager
 
 linux-pyenv: download_python_environment_manager
 	@sudo bash maintenance/general/pyenv/build.sh $(APPNAME) $(SUDO_USER) linux
-	@echo "export APPNAME=utilitiespackage; export USERNAME=user; export PLATFROM=linux"
