@@ -10,6 +10,7 @@ from utilitiespackage.settings import *
 def cli():
     return None
 
+
 @click.group(name="system")
 def system_group():
     return None
@@ -30,6 +31,7 @@ def selftest_command():
 def selfcoverage_command():
     os.chdir(APPDIR)
     pytest.main([f"--cov-config={COVERAGERC_PATH}", "--cov=utilitiespackage", "--cov-report", "term-missing", APPDIR])
+
 
 cli.add_command(system_group)
 main = cli
