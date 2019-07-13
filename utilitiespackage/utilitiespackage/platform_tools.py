@@ -1,9 +1,5 @@
 import sys
 
-if sys.version_info.major < 3:
-    sys.exit("Python 3 required but lower version found. Aborted.")
-
-
 def is_windows():
     """
     Simple function to return if a host is Windows or not

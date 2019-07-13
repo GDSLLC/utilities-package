@@ -1,6 +1,11 @@
 # black --line-length 150 .
 # flake8 --max-line-length=150 .
+import sys
+
+from utilitiespackage.settings import *
 from utilitiespackage.standard import *
+
+assert sys.version_info >= MINIMUM_PYTHON_VERSION
 
 from collections import Iterable as __Iterable, Mapping as __Mapping, Sequence as __Sequence
 
