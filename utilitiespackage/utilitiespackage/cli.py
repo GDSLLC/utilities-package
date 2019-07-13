@@ -27,7 +27,7 @@ def version_command():
 @system_group.command(name="selftest")
 def selftest_command():
     os.chdir(TESTDIR)
-    pytest.main(["-x", "-v", TESTDIR])
+    pytest.main(["--disable-pytest-warnings", "-x", "-v", TESTDIR])
 
 
 @system_group.command(name="selfcoverage")

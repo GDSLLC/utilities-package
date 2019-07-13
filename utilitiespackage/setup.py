@@ -43,6 +43,7 @@ setup(
         "flask",
         "click",
         "Jinja2",
+        "Genshi",
         "coverage",
         "pycontracts",
         "pytest",
