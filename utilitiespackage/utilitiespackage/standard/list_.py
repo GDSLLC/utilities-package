@@ -176,9 +176,3 @@ def listify(fn=None, wrapper=list):
     if fn is None:
         return listify_return
     return listify_return(fn)
-
-
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod(optionflags=doctest.ELLIPSIS)

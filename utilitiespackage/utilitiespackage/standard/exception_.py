@@ -49,9 +49,3 @@ def convert_exception(from_exception, to_exception, *to_args, **to_kw):
         return fn_new
 
     return wrapper
-
-
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod(optionflags=doctest.ELLIPSIS)

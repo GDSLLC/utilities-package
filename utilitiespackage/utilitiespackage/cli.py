@@ -2,6 +2,7 @@ import os
 import sys
 import click
 import pytest
+
 import requests
 
 from utilitiespackage.settings import *

@@ -1,7 +1,6 @@
-__all__ = ["is_subclass"]
+__all__ = ["is_subclass"]  # pragma: no cover
 
-
-_issubclass = issubclass
+_issubclass = issubclass  # pragma: no cover
 
 
 def is_subclass(o, bases):
@@ -34,9 +33,3 @@ def is_subclass(o, bases):
 
     bases = tuple(b for b in bases if isinstance(b, type))
     return _issubclass(o, bases)
-
-
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod(optionflags=doctest.ELLIPSIS)

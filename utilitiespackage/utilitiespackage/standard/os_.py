@@ -41,9 +41,3 @@ class chdir(object):
 
     def __repr__(self):
         return "%s(%r, old_path=%r)" % (type(self).__name__, self.new_path, self.old_path)
-
-
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod(optionflags=doctest.ELLIPSIS)

@@ -5,10 +5,10 @@ import unicodedata
 from utilitiespackage.six import text_type, PY3, string_types, binary_type, u
 from utilitiespackage.six.moves import xrange
 
-if PY3:
-    text_type_magicmethod = "__str__"
+if PY3:  # pragma: no cover
+    text_type_magicmethod = "__str__"  # pragma: no cover
 else:
-    text_type_magicmethod = "__unicode__"
+    text_type_magicmethod = "__unicode__"  # pragma: no cover
 
 from .random_ import random
 
@@ -29,7 +29,7 @@ __all__ = [
 ]
 
 
-class r(object):
+class r(object):  # pragma: no cover
     """
     A normalized repr for bytes/unicode between Python2 and Python3.
     """
@@ -83,7 +83,7 @@ def number_to_string(n, alphabet):
     result = ""
     base = len(alphabet)
     current = int(n)
-    if current < 0:
+    if current < 0:  # pragma: no cover
         raise ValueError("invalid n (must be non-negative): %s", n)
     while current:
         result = alphabet[current % base] + result
@@ -412,14 +412,14 @@ def dollars_to_cents(s, allow_negative=False):
         100
     """
     # TODO: Implement cents_to_dollars
-    if not s:
+    if not s:  # pragma: no cover
         return
 
-    if isinstance(s, string_types):
+    if isinstance(s, string_types):  # pragma: no cover
         s = "".join(RE_NUMBER.findall(s))
 
-    dollars = int(round(float(s) * 100))
-    if not allow_negative and dollars < 0:
+    dollars = int(round(float(s) * 100))  # pragma: no cover
+    if not allow_negative and dollars < 0:  # pragma: no cover
         raise ValueError("Negative values not permitted.")
 
     return dollars
@@ -434,9 +434,3 @@ def slugify(s, delimiter="-"):
     """
     s = unicodedata.normalize("NFKD", to_unicode(s)).encode("ascii", "ignore").decode("ascii")
     return RE_SLUG.sub(delimiter, s).strip(delimiter).lower()
-
-
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod(optionflags=doctest.ELLIPSIS)

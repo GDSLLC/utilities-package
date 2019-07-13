@@ -30,9 +30,3 @@ def get_many(d, required=[], optional=[], one_of=[]):
 
 def pop_many(d, keys, default=None):
     return [d.pop(k, default) for k in keys]
-
-
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod(optionflags=doctest.ELLIPSIS)
