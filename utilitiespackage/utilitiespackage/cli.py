@@ -3,8 +3,6 @@ import sys
 import click
 import pytest
 
-import requests
-
 from utilitiespackage.settings import *
 
 assert sys.version_info >= MINIMUM_PYTHON_VERSION

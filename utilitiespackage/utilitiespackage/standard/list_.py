@@ -3,8 +3,6 @@ from functools import wraps
 from collections import defaultdict
 
 from utilitiespackage.six import string_types
-from utilitiespackage.six.moves import xrange
-
 
 __all__ = ["groupby_count", "iterate", "is_iterable", "iterate_chunks", "iterate_items", "iterate_flatten", "listify"]
 

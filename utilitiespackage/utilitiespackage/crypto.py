@@ -11,7 +11,7 @@ from subprocess import Popen, PIPE
 def aes_encrypt(plaintext, password):
     """
     This runs a command equivilent to:
-    
+
         echo $plaintext | openssl enc -aes-256-cbc -a -A -k $password
 
     to produce ciphertext.
@@ -25,7 +25,7 @@ def aes_encrypt(plaintext, password):
 def aes_decrypt(ciphertext, password):
     """
     This runs a command equivilent to:
-    
+
         echo $ciphertext | openssl enc -aes-256-cbc -a -A -d -k $password
 
     to produce plaintext.
