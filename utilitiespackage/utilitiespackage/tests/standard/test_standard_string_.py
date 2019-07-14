@@ -31,10 +31,11 @@ def test_number_to_string():
         == "one two three four five "
     )
 
+
 def test_string_to_number():
-    assert string_to_number('101111000110000101001110', '01') == 12345678
-    assert string_to_number('babbbbaaabbaaaababaabbba', 'ab') == 12345678
-    assert string_to_number('ZXP0', string.ascii_letters + string.digits) == 12345678
+    assert string_to_number("101111000110000101001110", "01") == 12345678
+    assert string_to_number("babbbbaaabbaaaababaabbba", "ab") == 12345678
+    assert string_to_number("ZXP0", string.ascii_letters + string.digits) == 12345678
 
 
 def test_bytes_to_number():
@@ -50,7 +51,7 @@ def test_number_to_bytes():
 def test_to_str():
     some_str = b"\xff"
     some_unicode = u"\u1234"
-    some_exception = Exception(u'Error: ' + some_unicode)
+    some_exception = Exception(u"Error: " + some_unicode)
     r(to_str(some_str))
     r(to_str(some_unicode))
     r(to_str(some_exception))
@@ -58,7 +59,8 @@ def test_to_str():
 
 
 def test_to_unicode():
-    assert to_unicode(b'\xe1\x88\xb4') == '\u1234'
+    assert to_unicode(b"\xe1\x88\xb4") == "\u1234"
+
 
 def test_to_int():
     assert to_int("1") == 1
@@ -82,9 +84,9 @@ def test_to_float():
 
 
 def test_format_int():
-    assert format_int(1000) == '1,000'
-    assert format_int(1, u"{} day") == '1 day'
-    assert format_int(2, u"{} day") == '2 days'
+    assert format_int(1000) == "1,000"
+    assert format_int(1, u"{} day") == "1 day"
+    assert format_int(2, u"{} day") == "2 days"
 
 
 def test_dollars_to_cents():

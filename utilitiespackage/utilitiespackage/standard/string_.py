@@ -180,18 +180,18 @@ def number_to_bytes(n, endian="big"):
     res = []
     while n:
         n, ch = divmod(n, 256)
-        if PY3: # pragma: no cover
-            res.append(ch) # pragma: no cover
-        else: # pragma: no cover
-            res.append(chr(ch)) # pragma: no cover
+        if PY3:  # pragma: no cover
+            res.append(ch)  # pragma: no cover
+        else:  # pragma: no cover
+            res.append(chr(ch))  # pragma: no cover
 
     if endian == "big":
         res.reverse()
 
-    if PY3: # pragma: no cover
-        return bytes(res) # pragma: no cover
-    else: # pragma: no cover
-        return "".join(res) # pragma: no cover
+    if PY3:  # pragma: no cover
+        return bytes(res)  # pragma: no cover
+    else:  # pragma: no cover
+        return "".join(res)  # pragma: no cover
 
 
 def to_str(obj, encoding="utf-8", **encode_args):
@@ -225,7 +225,7 @@ def to_str(obj, encoding="utf-8", **encode_args):
         # Note: unicode(u'foo') is O(1) (by experimentation)
         return text_type(obj).encode(encoding, **encode_args)
 
-    return binary_type(obj) # pragma: no cover
+    return binary_type(obj)  # pragma: no cover
 
 
 def to_unicode(obj, encoding="utf-8", fallback="latin1", **decode_args):
@@ -255,14 +255,14 @@ def to_unicode(obj, encoding="utf-8", fallback="latin1", **decode_args):
         if isinstance(obj, text_type) or hasattr(obj, text_type_magicmethod):
             return text_type(obj)
 
-        obj_str = binary_type(obj) # pragma: no cover
+        obj_str = binary_type(obj)  # pragma: no cover
     else:
         obj_str = obj
 
-    try: # pragma: no cover
-        return text_type(obj_str, encoding, **decode_args) # pragma: no cover
+    try:  # pragma: no cover
+        return text_type(obj_str, encoding, **decode_args)  # pragma: no cover
     except UnicodeDecodeError:  # pragma: no cover
-        return text_type(obj_str, fallback, **decode_args) # pragma: no cover
+        return text_type(obj_str, fallback, **decode_args)  # pragma: no cover
 
 
 def to_int(s, default=0):

@@ -1,6 +1,7 @@
 import os
 import tempfile
 
+
 def set_vars():
     APPDIR = os.path.abspath(os.path.dirname(__file__))
     SETUPFILEDIR = os.path.abspath(os.path.join(APPDIR, ".."))
@@ -15,6 +16,7 @@ def set_vars():
     globals()["TESTDIR"] = TESTDIR
     globals()["MEMTEMPDIR"] = MEMTEMPDIR
 
-    return {"APPDIR":APPDIR, "SETUPFILEDIR":SETUPFILEDIR, "TESTDIR":TESTDIR, "MEMTEMPDIR":MEMTEMPDIR}
+    return {"APPDIR": APPDIR, "SETUPFILEDIR": SETUPFILEDIR, "TESTDIR": TESTDIR, "MEMTEMPDIR": MEMTEMPDIR}
+
 
 set_vars()
