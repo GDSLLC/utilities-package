@@ -6,6 +6,7 @@ libsqlite3-dev
 libffi-dev
 zip
 unzip
+tree
 wget
 nano
 emacs
