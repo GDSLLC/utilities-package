@@ -1,5 +1,5 @@
-APPNAME = utilitiespackage
-PYTHONVERSION = 3.6.3
+APPNAME=utilitiespackage
+PYTHONVERSION=3.6.3
 
 help:
 	@echo "usage: make [command]"
@@ -29,3 +29,4 @@ mac-conda: download_python_environment_manager
 
 linux-pyenv: download_python_environment_manager
 	@sudo bash maintenance/general/pyenv/build.sh $(APPNAME) $(SUDO_USER) linux
+	@bash maintenance/general/pyenv/emit_activation_script.sh
