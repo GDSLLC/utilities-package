@@ -1,4 +1,7 @@
+import sys
+del sys.modules['utilitiespackage.settings']
 from utilitiespackage.settings import (
+    set_vars,
     VERSION,
     PRINT_VERBOSITY,
     EXCLUDED_DIRS,
@@ -10,6 +13,10 @@ from utilitiespackage.settings import (
     COVERAGERC_PATH,
 )
 
+def test_set_vars():
+    vars = set_vars()
+    assert isinstance(vars, dict)
+    assert len(vars.keys()) == 9
 
 def test_settings_version():
     assert isinstance(VERSION, str)
