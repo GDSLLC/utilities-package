@@ -38,9 +38,9 @@ def is_iterable(maybe_iter, unless=(dict)):
         >>> is_iterable(xrange(5))
         True
     """
-    try: # pragma: no cover
+    try:  # pragma: no cover
         iter(maybe_iter)
-    except TypeError: # pragma: no cover
+    except TypeError:  # pragma: no cover
         return False
     return not isinstance(maybe_iter, unless)
 
@@ -87,7 +87,7 @@ def iterate_items(dictish):
         >>> list(iterate_items([('a', 1), ('b', 2)]))
         [('a', 1), ('b', 2)]
     """
-    if hasattr(dictish, "iteritems"): # pragma: no cover
+    if hasattr(dictish, "iteritems"):  # pragma: no cover
         return dictish.iteritems()
     if hasattr(dictish, "items"):
         return dictish.items()

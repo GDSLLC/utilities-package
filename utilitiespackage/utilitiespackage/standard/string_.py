@@ -180,7 +180,6 @@ def number_to_bytes(n, endian="big"):
     return bytes(res)
 
 
-
 def to_str(obj, encoding="utf-8", **encode_args):
     r"""
     Returns a ``str`` of ``obj``, encoding using ``encoding`` if necessary. For
@@ -200,7 +199,6 @@ def to_str(obj, encoding="utf-8", **encode_args):
 
     See source code for detailed semantics.
     """
-
 
     return obj
 
@@ -227,7 +225,6 @@ def to_unicode(obj, encoding="utf-8", fallback="latin1", **decode_args):
     """
 
     return obj
-
 
 
 def to_int(s, default=0):

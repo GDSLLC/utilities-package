@@ -90,12 +90,12 @@ def test_format_int():
 
 
 def test_dollars_to_cents():
-    #assert dollars_to_cents("$1") == 100
+    # assert dollars_to_cents("$1") == 100
     assert dollars_to_cents("1") == 100
     assert dollars_to_cents(1) == 100
     assert dollars_to_cents("1e2") == 10000
-    #assert dollars_to_cents("-1$", allow_negative=True) == -100
-    #assert dollars_to_cents("1 dollar") == 100
+    # assert dollars_to_cents("-1$", allow_negative=True) == -100
+    # assert dollars_to_cents("1 dollar") == 100
 
 
 def test_slugify():

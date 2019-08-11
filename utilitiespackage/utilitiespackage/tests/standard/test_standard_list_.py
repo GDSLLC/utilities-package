@@ -21,8 +21,8 @@ def test_standard_list_iterate():
 
 
 def test_standard_list_iterate_items():
-    assert list(iterate_items({'a': 1})) == [('a', 1)]
-    assert list(iterate_items([('a', 1), ('b', 2)])) == [('a', 1), ('b', 2)]
+    assert list(iterate_items({"a": 1})) == [("a", 1)]
+    assert list(iterate_items([("a", 1), ("b", 2)])) == [("a", 1), ("b", 2)]
 
 
 def test_standard_list_iterate_chunks():
@@ -31,8 +31,8 @@ def test_standard_list_iterate_chunks():
 
 
 def test_standard_list_iterate_flatten():
-    assert iterate_flatten([("foo",), ("bar",)]) ==  ["foo", "bar"]
-    assert iterate_flatten([[1,2,3],[4,5,6]]) ==  [1,2,3,4,5,6]
+    assert iterate_flatten([("foo",), ("bar",)]) == ["foo", "bar"]
+    assert iterate_flatten([[1, 2, 3], [4, 5, 6]]) == [1, 2, 3, 4, 5, 6]
 
 
 def test_standard_list_listify():
@@ -40,10 +40,12 @@ def test_standard_list_listify():
     def get_lengths(iterable):
         for i in iterable:
             yield len(i)
+
     assert get_lengths(["spam", "eggs"]) == [4, 4]
 
     @listify(wrapper=tuple)
     def get_lengths_tuple(iterable):
         for i in iterable:
             yield len(i)
+
     assert get_lengths_tuple(["foo", "bar"]) == (3, 3)
