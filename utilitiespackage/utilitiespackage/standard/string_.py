@@ -2,14 +2,6 @@ import re
 import string
 import unicodedata
 
-from utilitiespackage.six import text_type, PY3, string_types, binary_type, u
-from utilitiespackage.six.moves import xrange
-
-if PY3:  # pragma: no cover
-    text_type_magicmethod = "__str__"  # pragma: no cover
-else:
-    text_type_magicmethod = "__unicode__"  # pragma: no cover
-
 from .random_ import random
 
 
@@ -48,7 +40,7 @@ def random_string(length=6, alphabet=string.ascii_letters + string.digits):
 
     Default alphabet is url-friendly (base62).
     """
-    return "".join([random.choice(alphabet) for i in xrange(length)])
+    return "".join([random.choice(alphabet) for i in range(length)])
 
 
 def number_to_string(n, alphabet):
@@ -103,7 +95,7 @@ def string_to_number(s, alphabet):
 
     """
     base = len(alphabet)
-    inverse_alphabet = dict(zip(alphabet, xrange(0, base)))
+    inverse_alphabet = dict(zip(alphabet, range(0, base)))
     n = 0
     exp = 0
     for i in reversed(s):
@@ -180,18 +172,13 @@ def number_to_bytes(n, endian="big"):
     res = []
     while n:
         n, ch = divmod(n, 256)
-        if PY3:  # pragma: no cover
-            res.append(ch)  # pragma: no cover
-        else:  # pragma: no cover
-            res.append(chr(ch))  # pragma: no cover
+        res.append(ch)
 
     if endian == "big":
         res.reverse()
 
-    if PY3:  # pragma: no cover
-        return bytes(res)  # pragma: no cover
-    else:  # pragma: no cover
-        return "".join(res)  # pragma: no cover
+    return bytes(res)
+
 
 
 def to_str(obj, encoding="utf-8", **encode_args):
@@ -213,19 +200,9 @@ def to_str(obj, encoding="utf-8", **encode_args):
 
     See source code for detailed semantics.
     """
-    # Note: On py3, ``b'x'.__str__()`` returns ``"b'x'"``, so we need to do the
-    # explicit check first.
-    if isinstance(obj, binary_type):
-        return obj
 
-    # We coerce to unicode if '__unicode__' is available because there is no
-    # way to specify encoding when calling ``str(obj)``, so, eg,
-    # ``str(Exception(u'\u1234'))`` will explode.
-    if isinstance(obj, text_type) or hasattr(obj, text_type_magicmethod):
-        # Note: unicode(u'foo') is O(1) (by experimentation)
-        return text_type(obj).encode(encoding, **encode_args)
 
-    return binary_type(obj)  # pragma: no cover
+    return obj
 
 
 def to_unicode(obj, encoding="utf-8", fallback="latin1", **decode_args):
@@ -249,20 +226,8 @@ def to_unicode(obj, encoding="utf-8", fallback="latin1", **decode_args):
     See source code for detailed semantics.
     """
 
-    # Note: on py3, the `bytes` type defines an unhelpful "__str__" function,
-    # so we need to do this check (see comments in ``to_str``).
-    if not isinstance(obj, binary_type):
-        if isinstance(obj, text_type) or hasattr(obj, text_type_magicmethod):
-            return text_type(obj)
+    return obj
 
-        obj_str = binary_type(obj)  # pragma: no cover
-    else:
-        obj_str = obj
-
-    try:  # pragma: no cover
-        return text_type(obj_str, encoding, **decode_args)  # pragma: no cover
-    except UnicodeDecodeError:  # pragma: no cover
-        return text_type(obj_str, fallback, **decode_args)  # pragma: no cover
 
 
 def to_int(s, default=0):
@@ -406,9 +371,6 @@ def dollars_to_cents(s, allow_negative=False):
     # TODO: Implement cents_to_dollars
     if not s:  # pragma: no cover
         return
-
-    if isinstance(s, string_types):  # pragma: no cover
-        s = "".join(RE_NUMBER.findall(s))
 
     dollars = int(round(float(s) * 100))  # pragma: no cover
     if not allow_negative and dollars < 0:  # pragma: no cover
