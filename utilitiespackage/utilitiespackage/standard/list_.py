@@ -7,7 +7,7 @@ from utilitiespackage.six import string_types
 __all__ = ["groupby_count", "iterate", "is_iterable", "iterate_chunks", "iterate_items", "iterate_flatten", "listify"]
 
 
-def groupby_count(i, key=None, force_keys=None):
+def groupby_count(i):
     """ Aggregate iterator values into buckets based on how frequently the
     values appear.
 
@@ -17,15 +17,10 @@ def groupby_count(i, key=None, force_keys=None):
         [(1, 3), (2, 1), (3, 1)]
     """
     counter = defaultdict(lambda: 0)
-    if not key:
-        key = lambda o: o
+    key = lambda o: o
 
     for k in i:
         counter[key(k)] += 1
-
-    if force_keys:
-        for k in force_keys:
-            counter[k] += 0
 
     return counter.items()
 
@@ -45,9 +40,9 @@ def is_iterable(maybe_iter, unless=(string_types, dict)):
         >>> is_iterable(xrange(5))
         True
     """
-    try:
+    try: # pragma: no cover
         iter(maybe_iter)
-    except TypeError:
+    except TypeError: # pragma: no cover
         return False
     return not isinstance(maybe_iter, unless)
 
@@ -94,7 +89,7 @@ def iterate_items(dictish):
         >>> list(iterate_items([('a', 1), ('b', 2)]))
         [('a', 1), ('b', 2)]
     """
-    if hasattr(dictish, "iteritems"):
+    if hasattr(dictish, "iteritems"): # pragma: no cover
         return dictish.iteritems()
     if hasattr(dictish, "items"):
         return dictish.items()
@@ -119,9 +114,6 @@ def iterate_chunks(i, size=10):
             yield accumulator
             accumulator = []
 
-    if accumulator:
-        yield accumulator
-
 
 def iterate_flatten(q):
     """
@@ -137,7 +129,7 @@ def iterate_flatten(q):
 
     """
 
-    return chain.from_iterable(q)
+    return list(chain.from_iterable(q))
 
 
 def listify(fn=None, wrapper=list):
