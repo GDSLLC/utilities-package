@@ -1,5 +1,3 @@
-__all__ = ["is_subclass"]  # pragma: no cover
-
 _issubclass = issubclass  # pragma: no cover
 
 
