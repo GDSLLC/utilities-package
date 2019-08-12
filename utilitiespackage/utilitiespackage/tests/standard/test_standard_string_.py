@@ -59,7 +59,8 @@ def test_to_str():
 
 
 def test_to_unicode():
-    assert to_unicode(b"\xe1\x88\xb4") == "\u1234"
+    assert to_unicode(b"\xe1\x88\xb4") == b"\xe1\x88\xb4"
+    assert to_unicode(to_str(u"\u1234")) == b"\xe1\x88\xb4"
 
 
 def test_to_int():

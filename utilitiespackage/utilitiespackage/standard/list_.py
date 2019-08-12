@@ -38,6 +38,8 @@ def is_iterable(maybe_iter, unless=(dict)):
         >>> is_iterable(xrange(5))
         True
     """
+    if isinstance(maybe_iter, str):
+        return False
     try:  # pragma: no cover
         iter(maybe_iter)
     except TypeError:  # pragma: no cover
@@ -45,7 +47,7 @@ def is_iterable(maybe_iter, unless=(dict)):
     return not isinstance(maybe_iter, unless)
 
 
-def iterate(maybe_iter, dict):
+def iterate(maybe_iter, unless=(dict)):
     """ Always return an iterable.
 
     Returns ``maybe_iter`` if it is an iterable, otherwise it returns a single

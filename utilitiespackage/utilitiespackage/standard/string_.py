@@ -223,8 +223,9 @@ def to_unicode(obj, encoding="utf-8", fallback="latin1", **decode_args):
 
     See source code for detailed semantics.
     """
-
-    return obj
+    if isinstance(obj, (bytes, bytearray)):
+        return obj
+    return bytes(obj, 'utf-8')
 
 
 def to_int(s, default=0):
@@ -383,5 +384,5 @@ def slugify(s, delimiter="-"):
     """
     Normalize `s` into ASCII and replace non-word characters with `delimiter`.
     """
-    s = unicodedata.normalize("NFKD", to_unicode(s)).encode("ascii", "ignore").decode("ascii")
+    s = unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode("ascii")
     return RE_SLUG.sub(delimiter, s).strip(delimiter).lower()
