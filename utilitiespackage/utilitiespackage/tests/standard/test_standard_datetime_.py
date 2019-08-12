@@ -3,12 +3,23 @@ import datetime
 
 import pytz
 
-from utilitiespackage.standard.datetime_ import iterate_date_values, isoformat_as_datetime, truncate_datetime, to_timezone, now, datetime_from_timestamp
+from utilitiespackage.standard.datetime_ import (
+    iterate_date_values,
+    isoformat_as_datetime,
+    truncate_datetime,
+    to_timezone,
+    now,
+    datetime_from_timestamp,
+)
 
 
 def test_standard_datetime_iterate_date_values():
     assert list(iterate_date_values([(datetime.date(2011, 1, 1), 1), (datetime.date(2011, 1, 4), 2)])) == [1, 0, 0, 2]
-    assert list(iterate_date_values([(datetime.date(2011, 1, 1), 1), (datetime.date(2011, 1, 4), 2)], start_date=datetime.date(2011, 1, 2))) == [0, 0, 2]
+    assert list(iterate_date_values([(datetime.date(2011, 1, 1), 1), (datetime.date(2011, 1, 4), 2)], start_date=datetime.date(2011, 1, 2))) == [
+        0,
+        0,
+        2,
+    ]
 
 
 def test_standard_datetime_isoformat_as_datetime():
@@ -18,18 +29,18 @@ def test_standard_datetime_isoformat_as_datetime():
 
 def test_standard_datetime_truncate_datetime():
     t = datetime.datetime(2000, 1, 2, 3, 4, 5, 6000)
-    assert truncate_datetime(t, 'day').isoformat() == '2000-01-02T00:00:00'
-    assert truncate_datetime(t, 'minute').isoformat() == '2000-01-02T03:04:00'
+    assert truncate_datetime(t, "day").isoformat() == "2000-01-02T00:00:00"
+    assert truncate_datetime(t, "minute").isoformat() == "2000-01-02T03:04:00"
 
 
 def test_standard_datetime_to_timezone():
     t = datetime.datetime(2000, 1, 2, 3, 4, 5, 6000)
-    assert to_timezone(t, pytz.timezone('US/Eastern'))
+    assert to_timezone(t, pytz.timezone("US/Eastern"))
 
 
 def test_standard_datetime_now():
     now()
-    now(timezone=pytz.timezone('US/Eastern'))
+    now(timezone=pytz.timezone("US/Eastern"))
 
 
 def test_standard_datetime_datetime_from_timestamp():

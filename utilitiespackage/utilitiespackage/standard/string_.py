@@ -225,7 +225,7 @@ def to_unicode(obj, encoding="utf-8", fallback="latin1", **decode_args):
     """
     if isinstance(obj, (bytes, bytearray)):
         return obj
-    return bytes(obj, 'utf-8')
+    return bytes(obj, "utf-8")
 
 
 def to_int(s, default=0):

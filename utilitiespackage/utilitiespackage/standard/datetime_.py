@@ -1,6 +1,7 @@
 import calendar
 import datetime
 
+
 def iterate_date(start, stop=None, step=datetime.timedelta(days=1)):
     while not stop or start <= stop:
         yield start
@@ -67,7 +68,7 @@ def truncate_datetime(t, resolution):
     """
 
     resolutions = ["year", "month", "day", "hour", "minute", "second", "microsecond"]
-    if resolution not in resolutions: # pragma: no cover
+    if resolution not in resolutions:  # pragma: no cover
         raise KeyError("Resolution is not valid: {0}".format(resolution))
 
     args = []

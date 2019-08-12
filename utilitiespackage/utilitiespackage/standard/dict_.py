@@ -20,7 +20,7 @@ def get_many(d, required=[], optional=[], one_of=[]):
         for k in (k for k in one_of if k in d):
             return r + [d[k]]
 
-        raise KeyError("Missing a one_of value.") # pragma: no cover
+        raise KeyError("Missing a one_of value.")  # pragma: no cover
 
     return r
 
