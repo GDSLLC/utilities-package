@@ -27,21 +27,21 @@ def assert_hashable(*args, **kw):
     try:
         for i, arg in enumerate(args):
             hash(arg)
-    except TypeError:
+    except TypeError: # pragma: no cover
         raise TypeError("Argument in position %d is not hashable: %r" % (i, arg))
     try:
         for key, val in iterate_items(kw):
             hash(val)
-    except TypeError:
+    except TypeError: # pragma: no cover
         raise TypeError("Keyword argument %r is not hashable: %r" % (key, val))
 
 
 def _memoized_call(fn, cache, *args, **kw):
     key = (args, tuple(sorted(kw.items())))
 
-    try:
+    try: # pragma: no cover
         is_cached = key in cache
-    except TypeError as e:
+    except TypeError as e: # pragma: no cover
         # Re-raise a more descriptive error if it's a hashing problem.
         assert_hashable(*args, **kw)
         # If it hasn't raised by now, then something else is going on,
@@ -118,7 +118,7 @@ class memoized_property(object):
         self.__name__ = name or fget.__name__
 
     def __get__(self, obj, cls):
-        if obj is None:
+        if obj is None: # pragma: no cover
             return self
         obj.__dict__[self.__name__] = result = self.fget(obj)
         return result
