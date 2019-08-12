@@ -1,18 +1,6 @@
 import calendar
 import datetime
 
-
-__all__ = [
-    "iterate_date",
-    "iterate_date_values",
-    "isoformat_as_datetime",
-    "truncate_datetime",
-    "now",
-    "datetime_from_timestamp",
-    "timestamp_from_datetime",
-]
-
-
 def iterate_date(start, stop=None, step=datetime.timedelta(days=1)):
     while not stop or start <= stop:
         yield start
@@ -53,7 +41,7 @@ def isoformat_as_datetime(s):
     """
     Convert a datetime.datetime.isoformat() string to a datetime.datetime() object.
     """
-    return datetime.datetime.strptime(s, "%Y-%m-%dT%H:%M:%SZ")
+    return datetime.datetime.strptime(s, "%Y-%m-%dT%H:%M:%S")
 
 
 def truncate_datetime(t, resolution):
@@ -79,7 +67,7 @@ def truncate_datetime(t, resolution):
     """
 
     resolutions = ["year", "month", "day", "hour", "minute", "second", "microsecond"]
-    if resolution not in resolutions:
+    if resolution not in resolutions: # pragma: no cover
         raise KeyError("Resolution is not valid: {0}".format(resolution))
 
     args = []
@@ -102,8 +90,6 @@ def to_timezone(dt, timezone):
 
     This method follows the guidelines in http://pytz.sourceforge.net/
     """
-    if dt.tzinfo is None:
-        dt = dt.replace(tzinfo=_UTC)
     return timezone.normalize(dt.astimezone(timezone))
 
 
