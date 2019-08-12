@@ -13,4 +13,3 @@ def set_random():
 
 
 set_random()
-__all__ = ["random"]
