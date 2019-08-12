@@ -1,10 +1,5 @@
 import sys
 
-from utilitiespackage.six import reraise, PY3
-
-
-__all__ = ["convert_exception"]
-
 
 def convert_exception(from_exception, to_exception, *to_args, **to_kw):
     """
@@ -31,6 +26,11 @@ def convert_exception(from_exception, to_exception, *to_args, **to_kw):
         except BarError as e:
             assert e.message == 'bar'
     """
+    class TestFailed(Exception):
+        def __init__(self, m): # pragma: no cover
+            self.message = m
+        def __str__(self): # pragma: no cover
+            return self.message
 
     def wrapper(fn):
         def fn_new(*args, **kw):
@@ -39,11 +39,6 @@ def convert_exception(from_exception, to_exception, *to_args, **to_kw):
             except from_exception:
                 new_exception = to_exception(*to_args, **to_kw)
                 traceback = sys.exc_info()[2]
-                if PY3:
-                    value = new_exception
-                else:
-                    value = None
-                reraise(new_exception, value, traceback)
 
         fn_new.__doc__ = fn.__doc__
         return fn_new
