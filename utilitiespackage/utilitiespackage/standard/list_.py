@@ -2,8 +2,6 @@ from itertools import chain
 from functools import wraps
 from collections import defaultdict
 
-from utilitiespackage.six import string_types
-
 __all__ = ["groupby_count", "iterate", "is_iterable", "iterate_chunks", "iterate_items", "iterate_flatten", "listify"]
 
 
@@ -25,7 +23,7 @@ def groupby_count(i):
     return counter.items()
 
 
-def is_iterable(maybe_iter, unless=(string_types, dict)):
+def is_iterable(maybe_iter, unless=(dict)):
     """ Return whether ``maybe_iter`` is an iterable, unless it's an instance of one
     of the base class, or tuple of base classes, given in ``unless``.
 
@@ -40,14 +38,16 @@ def is_iterable(maybe_iter, unless=(string_types, dict)):
         >>> is_iterable(xrange(5))
         True
     """
-    try: # pragma: no cover
+    if isinstance(maybe_iter, str):
+        return False
+    try:  # pragma: no cover
         iter(maybe_iter)
-    except TypeError: # pragma: no cover
+    except TypeError:  # pragma: no cover
         return False
     return not isinstance(maybe_iter, unless)
 
 
-def iterate(maybe_iter, unless=(string_types, dict)):
+def iterate(maybe_iter, unless=(dict)):
     """ Always return an iterable.
 
     Returns ``maybe_iter`` if it is an iterable, otherwise it returns a single
@@ -89,7 +89,7 @@ def iterate_items(dictish):
         >>> list(iterate_items([('a', 1), ('b', 2)]))
         [('a', 1), ('b', 2)]
     """
-    if hasattr(dictish, "iteritems"): # pragma: no cover
+    if hasattr(dictish, "iteritems"):  # pragma: no cover
         return dictish.iteritems()
     if hasattr(dictish, "items"):
         return dictish.items()
