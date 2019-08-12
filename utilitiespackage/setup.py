@@ -20,7 +20,6 @@ setup(
         "setuptools",
         "boltons",
         "scipy",
-        "six",
         "bash",
         "configparser",
         "unidecode",
