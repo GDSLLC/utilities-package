@@ -10,6 +10,8 @@ from utilitiespackage.standard.datetime_ import (
     to_timezone,
     now,
     datetime_from_timestamp,
+    timestamp_from_datetime,
+    _UTC,
 )
 
 
@@ -45,3 +47,16 @@ def test_standard_datetime_now():
 
 def test_standard_datetime_datetime_from_timestamp():
     assert datetime_from_timestamp(1234.5) == datetime.datetime(1970, 1, 1, 0, 20, 34, 500000)
+
+
+def test_standard_datetime_timestamp_from_datetime():
+    assert timestamp_from_datetime(datetime.datetime(1970, 1, 1, 0, 20, 34, 500000)) == 1234.5
+
+
+def test_standard_datetime_utc_class():
+    t = datetime.datetime(2000, 1, 2, 3, 4, 5, 6000)
+    utc = _UTC()
+    assert utc.__repr__() == "<UTC>"
+    assert utc.utcoffset(t) == datetime.timedelta(0)
+    assert utc.tzname(t) == "UTC"
+    assert utc.dst(t) == datetime.timedelta(0)
