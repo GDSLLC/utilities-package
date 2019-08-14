@@ -38,6 +38,7 @@ setup(
         "bcrypt",
         "aiohttp",
         "sqlalchemy",
+        "montydb",
         "requests",
         "falcon",
         "tornado",
