@@ -37,6 +37,7 @@ setup(
         "base58",
         "bcrypt",
         "aiohttp",
+        "sqlalchemy",
         "requests",
         "falcon",
         "tornado",
