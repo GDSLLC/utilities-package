@@ -27,6 +27,7 @@ setup(
         "simplejson",
         "tailer",
         "pytz",
+        "j2cli",
         "termcolor",
         "texttable",
         "click",
