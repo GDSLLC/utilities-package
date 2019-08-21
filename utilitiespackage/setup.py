@@ -35,6 +35,7 @@ setup(
         "python-dateutil",
         "beautifulsoup4",
         "cssutils",
+        "istr",
         "base58",
         "bcrypt",
         "aiohttp",
