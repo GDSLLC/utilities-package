@@ -1,5 +1,5 @@
 APPNAME=utilitiespackage
-PYTHONVERSION = 3.6.3
+PYTHONVERSION = 3.6.9
 
 help:
 	@echo "usage: make [command]"
