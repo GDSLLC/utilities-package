@@ -13,6 +13,7 @@ try:
 except ImportError:
     MarkupType = unicode
 
+
 @memoized
 def _cache_key_by_md5(src_path, chunk_size=65536):
     hash = hashlib.md5()

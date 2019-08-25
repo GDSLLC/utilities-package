@@ -47,34 +47,34 @@ class RecentlyUsedContainer(MutableMapping):
             if len(self._container) > self._maxsize:
                 _key, evicted_value = self._container.popitem(last=False)
 
-        if self.dispose_func and evicted_value is not _Null: # pragma: no cover
+        if self.dispose_func and evicted_value is not _Null:  # pragma: no cover
             self.dispose_func(evicted_value)
 
     def __delitem__(self, key):
-        with self._lock: # pragma: no cover
+        with self._lock:  # pragma: no cover
             value = self._container.pop(key)
 
-        if self.dispose_func: # pragma: no cover
+        if self.dispose_func:  # pragma: no cover
             self.dispose_func(value)
 
     def __len__(self):
-        with self._lock: # pragma: no cover
+        with self._lock:  # pragma: no cover
             return len(self._container)
 
     def __iter__(self):
-        raise NotImplementedError("Iteration over this class is unlikely to be threadsafe.") # pragma: no cover
+        raise NotImplementedError("Iteration over this class is unlikely to be threadsafe.")  # pragma: no cover
 
     def clear(self):
-        with self._lock: # pragma: no cover
+        with self._lock:  # pragma: no cover
             # Copy pointers to all values, then wipe the mapping
             # under Python 2, this copies the list of values twice :-|
             values = list(self._container.values())
             self._container.clear()
 
-        if self.dispose_func: # pragma: no cover
+        if self.dispose_func:  # pragma: no cover
             for value in values:
                 self.dispose_func(value)
 
     def keys(self):
-        with self._lock: # pragma: no cover
+        with self._lock:  # pragma: no cover
             return self._container.keys()

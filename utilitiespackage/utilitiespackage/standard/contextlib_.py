@@ -1,15 +1,15 @@
 import os
 
-try: # pragma: no cover
+try:  # pragma: no cover
     replace_func = os.replace
-except AttributeError: # pragma: no cover
+except AttributeError:  # pragma: no cover
     replace_func = os.rename
 
 
 def _doctest_setup():
     try:
         os.remove("/tmp/open_atomic-example.txt")
-    except OSError: # pragma: no cover
+    except OSError:  # pragma: no cover
         pass
 
 
@@ -112,7 +112,7 @@ class open_atomic(object):
             self.file.close()
             replace_func(self.temp_name, self.target_name)
             self.name = self.target_name
-        except: # pragma: no cover
+        except:  # pragma: no cover
             try:
                 self.abort()
             except:
@@ -121,7 +121,7 @@ class open_atomic(object):
         self.closed = True
 
     def abort(self):
-        try: # pragma: no cover
+        try:  # pragma: no cover
             if os.name == "nt":
                 # Note: Windows can't remove an open file, so sacrifice some
                 # safety and close it before deleting it here. This is only a
@@ -129,16 +129,16 @@ class open_atomic(object):
                 # shouldn't... But it's probably a better idea to be safe.
                 self.file.close()
             os.remove(self.temp_name)
-        except OSError as e: # pragma: no cover
+        except OSError as e:  # pragma: no cover
             self.abort_error = e
-        self.file.close() # pragma: no cover
-        self.closed = True # pragma: no cover
-        self.aborted = True # pragma: no cover
+        self.file.close()  # pragma: no cover
+        self.closed = True  # pragma: no cover
+        self.aborted = True  # pragma: no cover
 
-    def __enter__(self): # pragma: no cover
+    def __enter__(self):  # pragma: no cover
         return self
 
-    def __exit__(self, *exc_info): # pragma: no cover
+    def __exit__(self, *exc_info):  # pragma: no cover
         if exc_info[0] is None:
             self.close()
         else:

@@ -2,6 +2,7 @@ from itertools import chain
 from functools import wraps
 from collections import defaultdict
 
+
 def groupby_count(i):
     """ Aggregate iterator values into buckets based on how frequently the
     values appear.

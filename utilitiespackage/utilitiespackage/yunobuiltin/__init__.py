@@ -7,6 +7,7 @@ from functools import reduce
 from functools import partial
 from operator import attrgetter as aget, itemgetter as iget, methodcaller as mcall
 
+
 def gensym():
     """Generates a unique symbol that is a valid python identifier"""
     return str(uuid4()).replace("-", "_")
@@ -20,12 +21,12 @@ def isa(value, target):
 
     # instance vs type
     if issubclass(type(value), type):
-        if issubclass(type(target), type): # pragma: no cover
+        if issubclass(type(target), type):  # pragma: no cover
             return issubclass(value, target)
-        else: # pragma: no cover
+        else:  # pragma: no cover
             return False
-    else: # pragma: no cover
-        if issubclass(type(target), type):# pragma: no cover
+    else:  # pragma: no cover
+        if issubclass(type(target), type):  # pragma: no cover
             return isinstance(value, target)
         return False
 
@@ -550,16 +551,16 @@ def rpartial(func, *args):
     return lambda *xtra: func(*flatten1(xtra, args))
 
 
-first = rpartial(get, 0) # pragma: no cover
-second = rpartial(get, 1) # pragma: no cover
-third = rpartial(get, 2) # pragma: no cover
-fourth = rpartial(get, 3) # pragma: no cover
-fifth = rpartial(get, 4) # pragma: no cover
-sixth = rpartial(get, 5) # pragma: no cover
-seventh = rpartial(get, 6) # pragma: no cover
-eighth = rpartial(get, 7) # pragma: no cover
-ninth = rpartial(get, 8) # pragma: no cover
-tenth = rpartial(get, 9) # pragma: no cover
+first = rpartial(get, 0)  # pragma: no cover
+second = rpartial(get, 1)  # pragma: no cover
+third = rpartial(get, 2)  # pragma: no cover
+fourth = rpartial(get, 3)  # pragma: no cover
+fifth = rpartial(get, 4)  # pragma: no cover
+sixth = rpartial(get, 5)  # pragma: no cover
+seventh = rpartial(get, 6)  # pragma: no cover
+eighth = rpartial(get, 7)  # pragma: no cover
+ninth = rpartial(get, 8)  # pragma: no cover
+tenth = rpartial(get, 9)  # pragma: no cover
 
 last = rpartial(get, -1)
 
@@ -750,5 +751,5 @@ def juxt(*funcs):
     return juxt_wrapper
 
 
-merge_keep_left = partial(merge_with, lambda x, y: x) # pragma: no cover
-merge_keep_right = partial(merge_with, lambda x, y: y) # pragma: no cover
+merge_keep_left = partial(merge_with, lambda x, y: x)  # pragma: no cover
+merge_keep_right = partial(merge_with, lambda x, y: y)  # pragma: no cover
