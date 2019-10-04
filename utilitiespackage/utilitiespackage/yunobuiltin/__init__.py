@@ -64,7 +64,7 @@ class MultiFn(object):
                 return do_maybe_preferred(target, func)
 
         # default to default_func or throwing if default_func isn't setup
-        if self.default_func is not None:
+        if self.default_func is not None: # pragma: no cover
             return self.default_func(*args, **kwargs)
         else:
             raise Exception("No default value provided!")
@@ -113,7 +113,7 @@ class MultiFn(object):
 
     def prefer(self, class1, class2):
         """Prefers class1 over class2"""
-        if class1 == class2:
+        if class1 == class2: # pragma: no cover
             raise ValueError("class1 cannot == class2")
         # search for class1 and class2 in dispatch_alist
         p1 = False
@@ -125,9 +125,9 @@ class MultiFn(object):
                 p2 = True
             if p1 and p2:
                 break
-        if not p1:
+        if not p1: # pragma: no cover
             raise ValueError("class1 is not registered!")
-        if not p2:
+        if not p2: # pragma: no cover
             raise ValueError("class2 is not registered!")
         # register the preference
         self.dispatch_prefers.append((class1, class2))
@@ -142,12 +142,12 @@ def interleave(*args):
     iterators = [iter(x) for x in args]
     while iterators:
         for i, x in enumerate(iterators):
-            try:
+            try: # pragma: no cover
                 yield x.next()
-            except StopIteration:
-                try:
+            except StopIteration: # pragma: no cover
+                try: # pragma: no cover
                     iterators.pop(i)
-                except IndexError:
+                except IndexError: # pragma: no cover
                     break
 
 
@@ -177,7 +177,7 @@ def deep_merge_with(f, *dicts):
     return _deep_merge_with(*dicts)
 
 
-def throw(exception, *args, **kwargs):
+def throw(exception, *args, **kwargs): # pragma: no cover
     """ Raises an exception (as an expression) """
     raise exception(*args, **kwargs)
 
@@ -188,9 +188,9 @@ def get_in(obj, lookup, default=None):
     """
     tmp = obj
     for l in lookup:
-        try:
+        try: # pragma: no cover
             tmp = tmp[l]
-        except (KeyError, IndexError, TypeError):
+        except (KeyError, IndexError, TypeError): # pragma: no cover
             return default
     return tmp
 
@@ -200,9 +200,9 @@ def get(obj, k, default=None):
 
     If default is callable, return a call to it passing in obj and k.
     """
-    try:
+    try: # pragma: no cover
         return obj[k]
-    except (KeyError, AttributeError, TypeError, IndexError):
+    except (KeyError, AttributeError, TypeError, IndexError): # pragma: no cover
         if callable(default):
             return default(obj, k)
         return default
@@ -221,7 +221,7 @@ def assoc(obj, *args):
     Special-cases None to return {k: v} ala Clojure.
     """
     # requires even count of *args
-    if not is_even(len(args)):
+    if not is_even(len(args)): # pragma: no cover
         raise ValueError("*args count must be even")
 
     # special case None to work like empty dict
@@ -245,7 +245,7 @@ def assoc_deep(obj, *args):
     from copy import deepcopy
 
     # requires even count of *args
-    if not is_even(len(args)):
+    if not is_even(len(args)): # pragma: no cover
         raise ValueError("*args count must be even")
 
     # special case None to work like empty dict
@@ -343,9 +343,9 @@ def is_iterable(obj):
 def dissoc(obj, *ks):
     """ Return obj without k """
     for k in ks:
-        try:
+        try: # pragma: no cover
             del obj[k]
-        except (KeyError, IndexError):
+        except (KeyError, IndexError): # pragma: no cover
             pass
     return obj
 
@@ -356,9 +356,9 @@ def dissoc_deep(obj, *ks):
 
     obj = deepcopy(obj)
     for k in ks:
-        try:
+        try: # pragma: no cover
             del obj[k]
-        except (KeyError, IndexError):
+        except (KeyError, IndexError): # pragma: no cover
             pass
     return obj
 
@@ -446,9 +446,9 @@ def thread(*args):
 
 def trap_exception(e, f, default=None):
     """ Call f(), trapping e, default to default (which might be callable) """
-    try:
+    try: # pragma: no cover
         return f()
-    except e:
+    except e: # pragma: no cover
         if callable(default):
             return default(e)
         else:
@@ -470,10 +470,10 @@ def prepend(v, l):
 
         def generator():
             yield v
-            try:
+            try: # pragma: no cover
                 for x in l:
                     yield x
-            except TypeError:
+            except TypeError: # pragma: no cover
                 pass
 
         return generator()
@@ -495,10 +495,10 @@ def append(l, *vs):
     else:
 
         def generator():
-            try:
+            try: # pragma: no cover
                 for x in l:
                     yield x
-            except TypeError:
+            except TypeError: # pragma: no cover
                 pass
             for v in vs:
                 yield v
@@ -649,7 +649,7 @@ class Reduced(BaseException):
         return "<Reduced: {}>".format(val)
 
 
-def reduced(v):
+def reduced(v): # pragma: no cover
     """ Aborts execution of a better_reduce or better_map and returns then
     passed value immediately. """
     raise Reduced(v)
@@ -676,44 +676,44 @@ def better_reduce(f, *xs):
 
     l = len(xs)
 
-    if l == 0:
+    if l == 0: # pragma: no cover
         raise Exception("No iterable passed!")
 
     elif l == 1:
 
         coll = iter(xs[0])
-        try:
+        try: # pragma: no cover
             x = next(coll)
             y = next(coll)
-        except StopIteration:
+        except StopIteration: # pragma: no cover
             raise Exception("No initial value passed and not at least 2 vals in coll")
 
-        try:
+        try: # pragma: no cover
             init = f(x, y)
-        except (Reduced, r):
+        except (Reduced, r): # pragma: no cover
             return r.val
 
-        try:
+        try: # pragma: no cover
             return reduce(f, coll, init)
-        except (Reduced, r):
+        except (Reduced, r): # pragma: no cover
             return r.val
 
     elif l == 2:
         init = xs[0]
         coll = xs[1]
 
-        try:
+        try: # pragma: no cover
             return reduce(f, coll, init)
-        except (Reduced, r):
+        except (Reduced, r): # pragma: no cover
             return r.val
 
     else:
         init = xs[0]
         colls = izip_longest(*xs[1:])
 
-        try:
+        try: # pragma: no cover
             return reduce(f, colls, init)
-        except (Reduced, r):
+        except (Reduced, r): # pragma: no cover
             return r.val
 
 
