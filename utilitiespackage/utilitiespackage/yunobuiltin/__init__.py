@@ -67,7 +67,7 @@ class MultiFn(object):
         if self.default_func is not None: # pragma: no cover
             return self.default_func(*args, **kwargs)
         else:
-            raise Exception("No default value provided!")
+            raise Exception("No default value provided!") # pragma: no cover
 
     def register_method(self, target, f):
         """Helper to register a new method for a given dispatch target"""
@@ -114,7 +114,7 @@ class MultiFn(object):
     def prefer(self, class1, class2):
         """Prefers class1 over class2"""
         if class1 == class2: # pragma: no cover
-            raise ValueError("class1 cannot == class2")
+            raise ValueError("class1 cannot == class2") # pragma: no cover
         # search for class1 and class2 in dispatch_alist
         p1 = False
         p2 = False
@@ -126,9 +126,9 @@ class MultiFn(object):
             if p1 and p2:
                 break
         if not p1: # pragma: no cover
-            raise ValueError("class1 is not registered!")
+            raise ValueError("class1 is not registered!") # pragma: no cover
         if not p2: # pragma: no cover
-            raise ValueError("class2 is not registered!")
+            raise ValueError("class2 is not registered!") # pragma: no cover
         # register the preference
         self.dispatch_prefers.append((class1, class2))
 
@@ -179,7 +179,7 @@ def deep_merge_with(f, *dicts):
 
 def throw(exception, *args, **kwargs): # pragma: no cover
     """ Raises an exception (as an expression) """
-    raise exception(*args, **kwargs)
+    raise exception(*args, **kwargs) # pragma: no cover
 
 
 def get_in(obj, lookup, default=None):
@@ -222,7 +222,7 @@ def assoc(obj, *args):
     """
     # requires even count of *args
     if not is_even(len(args)): # pragma: no cover
-        raise ValueError("*args count must be even")
+        raise ValueError("*args count must be even") # pragma: no cover
 
     # special case None to work like empty dict
     if obj is None:
@@ -246,7 +246,7 @@ def assoc_deep(obj, *args):
 
     # requires even count of *args
     if not is_even(len(args)): # pragma: no cover
-        raise ValueError("*args count must be even")
+        raise ValueError("*args count must be even") # pragma: no cover
 
     # special case None to work like empty dict
     if obj is None:
@@ -652,7 +652,7 @@ class Reduced(BaseException):
 def reduced(v): # pragma: no cover
     """ Aborts execution of a better_reduce or better_map and returns then
     passed value immediately. """
-    raise Reduced(v)
+    raise Reduced(v) # pragma: no cover
 
 
 def better_reduce(f, *xs):
@@ -677,7 +677,7 @@ def better_reduce(f, *xs):
     l = len(xs)
 
     if l == 0: # pragma: no cover
-        raise Exception("No iterable passed!")
+        raise Exception("No iterable passed!") # pragma: no cover
 
     elif l == 1:
 
@@ -686,7 +686,7 @@ def better_reduce(f, *xs):
             x = next(coll)
             y = next(coll)
         except StopIteration: # pragma: no cover
-            raise Exception("No initial value passed and not at least 2 vals in coll")
+            raise Exception("No initial value passed and not at least 2 vals in coll") # pragma: no cover
 
         try: # pragma: no cover
             init = f(x, y)
