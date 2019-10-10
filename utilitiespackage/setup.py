@@ -22,6 +22,7 @@ setup(
 	"path.py",
         "scipy",
         "bash",
+        "sh",
         "configparser",
         "unidecode",
         "uritools",
