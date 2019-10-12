@@ -34,50 +34,106 @@ from utilitiespackage.yunobuiltin import (
     assoc_deep_in,
     update_in,
     update_deep_in,
+    dissoc,
+    dissoc_deep,
+    dissoc_in,
+    dissoc_deep_in,
+    select_keys,
+    select_vals,
 )
+
+
+def test_select_vals():
+    d_0 = {"a": 0, "b": 0}
+    assert select_vals(("a"), d_0) == [0]
+    d_0 = {"a": 0, "b": 1, "c": 2}
+    assert select_vals(("a", "b"), d_0) == [0, 1]
+
+
+def test_select_keys():
+    d_0 = {"a": 0, "b": 0}
+    assert select_keys(("a"), d_0) == {"a": 0}
+    d_0 = {"a": 0, "b": 0, "c": 0}
+    assert select_keys(("a", "b"), d_0) == {"a": 0, "b": 0}
+
+
+def test_dissoc_deep_in():
+    d_0 = {"a": 0}
+    assert dissoc_deep_in(d_0, ("a")) == {}
+    d_0 = {"a": None}
+    assert dissoc_deep_in(d_0, ("a", "b")) == {"a": None}
+    d_0 = {"a": {"b": 0}}
+    assert dissoc_deep_in(d_0, ("a", "b")) == {"a": {}}
+
+
+def test_dissoc_in():
+    d_0 = {"a": 0}
+    assert dissoc_in(d_0, ("a")) == {}
+    d_0 = {"a": None}
+    assert dissoc_in(d_0, ("a", "b")) == {"a": None}
+    d_0 = {"a": {"b": 0}}
+    assert dissoc_in(d_0, ("a", "b")) == {"a": {}}
+
+
+def test_dissoc_deep():
+    d_0 = {"a": 0}
+    assert dissoc_deep(d_0, "a") == {}
+
+
+def test_dissoc():
+    d_0 = {"a": 0}
+    assert dissoc(d_0, "a") == {}
+
+
 def test_update_deep_in():
     def fn(current_value, *args, **kwargs):
-        return 'new data';
-    d_0 = {"a":0}
-    assert update_deep_in(d_0, ['a'], fn) == {"a":"new data"}
-    
+        return "new data"
+
+    d_0 = {"a": 0}
+    assert update_deep_in(d_0, ["a"], fn) == {"a": "new data"}
+
     def fn(current_value, args, debug=False):
         if len(args) > 0:
             if args[0] == "add 10":
-                return 'new data + 10'
-    d_0 = {"a":0}
-    assert update_deep_in(d_0, ['a'], fn, ["add 10"], debug=True) == {'a': 'new data + 10'}
-    d_0 = {"a":{}}
-    assert update_deep_in(d_0, ['a','b'], fn, ["add 10"], debug=True) == {'a': {'b': 'new data + 10'}}
+                return "new data + 10"
+
+    d_0 = {"a": 0}
+    assert update_deep_in(d_0, ["a"], fn, ["add 10"], debug=True) == {"a": "new data + 10"}
+    d_0 = {"a": {}}
+    assert update_deep_in(d_0, ["a", "b"], fn, ["add 10"], debug=True) == {"a": {"b": "new data + 10"}}
+
 
 def test_update_in():
     def fn(current_value, *args, **kwargs):
-        return 'new data';
-    d_0 = {"a":0}
-    assert update_in(d_0, ['a'], fn) == {"a":"new data"}
-    
+        return "new data"
+
+    d_0 = {"a": 0}
+    assert update_in(d_0, ["a"], fn) == {"a": "new data"}
+
     def fn(current_value, args, debug=False):
         if len(args) > 0:
             if args[0] == "add 10":
-                return 'new data + 10'
-    d_0 = {"a":0}
-    assert update_in(d_0, ['a'], fn, ["add 10"], debug=True) == {'a': 'new data + 10'}
-    d_0 = {"a":{}}
-    assert update_in(d_0, ['a','b'], fn, ["add 10"], debug=True) == {'a': {'b': 'new data + 10'}}
+                return "new data + 10"
+
+    d_0 = {"a": 0}
+    assert update_in(d_0, ["a"], fn, ["add 10"], debug=True) == {"a": "new data + 10"}
+    d_0 = {"a": {}}
+    assert update_in(d_0, ["a", "b"], fn, ["add 10"], debug=True) == {"a": {"b": "new data + 10"}}
+
 
 def test_assoc_deep_in():
-    d_0 = {"c":3}
-    d_1 = {"d":3}
-    assert assoc_deep_in(d_0, ["a","b"], ["a","b"]) == {'a': {'b': ['a','b']}, 'c': 3}
-    assert assoc_deep_in(d_1, ["a","b","c"], ["a","b"]) == {'a': {'b': {'c': ['a','b']}}, 'd': 3}
+    d_0 = {"c": 3}
+    d_1 = {"d": 3}
+    assert assoc_deep_in(d_0, ["a", "b"], ["a", "b"]) == {"a": {"b": ["a", "b"]}, "c": 3}
+    assert assoc_deep_in(d_1, ["a", "b", "c"], ["a", "b"]) == {"a": {"b": {"c": ["a", "b"]}}, "d": 3}
 
 
 def test_assoc_in():
-    d_0 = {"c":3}
-    d_1 = {"d":3}
-    assert assoc_in(d_0, ["a","b"], ["a","b"]) == {'a': {'b': ['a','b']}, 'c': 3}
-    assert assoc_in(d_1, ["a","b","c"], ["a","b"]) == {'a': {'b': {'c': ['a','b']}}, 'd': 3}
-    
+    d_0 = {"c": 3}
+    d_1 = {"d": 3}
+    assert assoc_in(d_0, ["a", "b"], ["a", "b"]) == {"a": {"b": ["a", "b"]}, "c": 3}
+    assert assoc_in(d_1, ["a", "b", "c"], ["a", "b"]) == {"a": {"b": {"c": ["a", "b"]}}, "d": 3}
+
 
 def test_interleave():
     a = [0, 2, 4, 6]

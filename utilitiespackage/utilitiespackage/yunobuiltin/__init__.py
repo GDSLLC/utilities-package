@@ -372,7 +372,7 @@ def dissoc_in(obj, keys):
             newmap = dissoc_in(nextmap, ks)
             if is_iterable(obj):
                 return assoc(obj, k, newmap)
-            return dissoc(obj, k)
+            return dissoc(obj, k)  # pragma: no cover
         return obj
     return dissoc(obj, k)
 
@@ -386,7 +386,7 @@ def dissoc_deep_in(obj, keys):
             newmap = dissoc_in(nextmap, ks)
             if is_iterable(obj):
                 return assoc(obj, k, newmap)
-            return dissoc(obj, k)
+            return dissoc(obj, k)  # pragma: no cover
         return obj
     return dissoc(obj, k)
 
