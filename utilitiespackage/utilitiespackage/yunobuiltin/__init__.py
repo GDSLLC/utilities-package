@@ -143,7 +143,7 @@ def interleave(*args):
     while iterators:
         for i, x in enumerate(iterators):
             try: # pragma: no cover
-                yield x.next()
+                yield x.__next__()
             except StopIteration: # pragma: no cover
                 try: # pragma: no cover
                     iterators.pop(i)

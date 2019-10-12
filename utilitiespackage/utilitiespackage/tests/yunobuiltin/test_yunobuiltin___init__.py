@@ -29,7 +29,13 @@ from utilitiespackage.yunobuiltin import (
     assoc_deep,
     assoc_kw,
     assoc_deep_kw,
+    interleave,
 )
+def test_interleave():
+    a = [0,2,4,6]
+    b = [1,3,5,7]
+    assert list(interleave(a,b)) == [0,1,2,3,4,5,6,7]
+
 def test_assoc_kw():
     d_0 = {"a": 0, "b":1}
     assert assoc_kw(d_0,a=1,b=2) == {"a": 1, "b":2} 
