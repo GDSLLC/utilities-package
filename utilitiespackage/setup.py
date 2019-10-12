@@ -19,7 +19,7 @@ setup(
     install_requires=[
         "setuptools",
         "boltons",
-	"path.py",
+        "path.py",
         "scipy",
         "bash",
         "configparser",

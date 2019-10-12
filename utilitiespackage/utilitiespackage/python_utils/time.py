@@ -8,7 +8,7 @@ epoch = datetime.datetime(year=1970, month=1, day=1)
 
 
 def timedelta_to_seconds(delta):
-    '''Convert a timedelta to seconds with the microseconds as fraction
+    """Convert a timedelta to seconds with the microseconds as fraction
 
     Note that this method has become largely obsolete with the
     `timedelta.total_seconds()` method introduced in Python 2.7.
@@ -22,7 +22,7 @@ def timedelta_to_seconds(delta):
     '1.000001'
     >>> '%.6f' % timedelta_to_seconds(timedelta(microseconds=1))
     '0.000001'
-    '''
+    """
     # Only convert to float if needed
     if delta.microseconds:
         total = delta.microseconds * 1e-6
@@ -34,7 +34,7 @@ def timedelta_to_seconds(delta):
 
 
 def format_time(timestamp, precision=datetime.timedelta(seconds=1)):
-    '''Formats timedelta/datetime/seconds
+    """Formats timedelta/datetime/seconds
 
     >>> format_time('1')
     '0:00:01'
@@ -55,10 +55,10 @@ def format_time(timestamp, precision=datetime.timedelta(seconds=1)):
         ...
     TypeError: Unknown type ...
 
-    '''
+    """
     precision_seconds = precision.total_seconds()
 
-    if isinstance(timestamp, six.string_types + six.integer_types + (float, )):
+    if isinstance(timestamp, six.string_types + six.integer_types + (float,)):
         try:
             castfunc = six.integer_types[-1]
             timestamp = datetime.timedelta(seconds=castfunc(timestamp))
@@ -73,7 +73,7 @@ def format_time(timestamp, precision=datetime.timedelta(seconds=1)):
         return str(datetime.timedelta(seconds=seconds))
     elif isinstance(timestamp, datetime.datetime):
         # Python 2 doesn't have the timestamp method
-        if hasattr(timestamp, 'timestamp'):  # pragma: no cover
+        if hasattr(timestamp, "timestamp"):  # pragma: no cover
             seconds = timestamp.timestamp()
         else:
             seconds = timedelta_to_seconds(timestamp - epoch)
@@ -92,6 +92,6 @@ def format_time(timestamp, precision=datetime.timedelta(seconds=1)):
     elif isinstance(timestamp, datetime.date):
         return str(timestamp)
     elif timestamp is None:
-        return '--:--:--'
+        return "--:--:--"
     else:
-        raise TypeError('Unknown type %s: %r' % (type(timestamp), timestamp))
+        raise TypeError("Unknown type %s: %r" % (type(timestamp), timestamp))
