@@ -27,7 +27,21 @@ from utilitiespackage.yunobuiltin import (
     concat,
     assoc,
     assoc_deep,
+    assoc_kw,
+    assoc_deep_kw,
 )
+def test_assoc_kw():
+    d_0 = {"a": 0, "b":1}
+    assert assoc_kw(d_0,a=1,b=2) == {"a": 1, "b":2} 
+    d_0 = None
+    assert assoc_kw(d_0,a=0,b=1) == {"a": 0, "b":1}
+
+def test_assoc_deep_kw():
+    d_0 = {"a": 0, "b":1}
+    assert assoc_deep_kw(d_0,a=1,b=2) == {"a": 1, "b":2} 
+    d_0 = None
+    assert assoc_deep_kw(d_0,a=0,b=1) == {"a": 0, "b":1}
+
 
 def test_assoc():
     d_0 = {"a": 0, "b":1}
