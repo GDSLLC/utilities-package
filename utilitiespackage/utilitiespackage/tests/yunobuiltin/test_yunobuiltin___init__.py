@@ -30,8 +30,54 @@ from utilitiespackage.yunobuiltin import (
     assoc_kw,
     assoc_deep_kw,
     interleave,
+    assoc_in,
+    assoc_deep_in,
+    update_in,
+    update_deep_in,
 )
+def test_update_deep_in():
+    def fn(current_value, *args, **kwargs):
+        return 'new data';
+    d_0 = {"a":0}
+    assert update_deep_in(d_0, ['a'], fn) == {"a":"new data"}
+    
+    def fn(current_value, args, debug=False):
+        if len(args) > 0:
+            if args[0] == "add 10":
+                return 'new data + 10'
+    d_0 = {"a":0}
+    assert update_deep_in(d_0, ['a'], fn, ["add 10"], debug=True) == {'a': 'new data + 10'}
+    d_0 = {"a":{}}
+    assert update_deep_in(d_0, ['a','b'], fn, ["add 10"], debug=True) == {'a': {'b': 'new data + 10'}}
 
+def test_update_in():
+    def fn(current_value, *args, **kwargs):
+        return 'new data';
+    d_0 = {"a":0}
+    assert update_in(d_0, ['a'], fn) == {"a":"new data"}
+    
+    def fn(current_value, args, debug=False):
+        if len(args) > 0:
+            if args[0] == "add 10":
+                return 'new data + 10'
+    d_0 = {"a":0}
+    assert update_in(d_0, ['a'], fn, ["add 10"], debug=True) == {'a': 'new data + 10'}
+    d_0 = {"a":{}}
+    assert update_in(d_0, ['a','b'], fn, ["add 10"], debug=True) == {'a': {'b': 'new data + 10'}}
+
+def test_assoc_deep_in():
+    d_0 = {"c":3}
+    d_1 = {"d":3}
+    assert assoc_deep_in(d_0, ["a","b"], ["a","b"]) == {'a': {'b': ['a','b']}, 'c': 3}
+    assert assoc_deep_in(d_1, ["a","b","c"], ["a","b"]) == {'a': {'b': {'c': ['a','b']}}, 'd': 3}
+
+
+def test_assoc_in():
+    d_0 = {"c":3}
+    d_1 = {"d":3}
+    assert assoc_in(d_0, ["a","b"], ["a","b"]) == {'a': {'b': ['a','b']}, 'c': 3}
+    assert assoc_in(d_1, ["a","b","c"], ["a","b"]) == {'a': {'b': {'c': ['a','b']}}, 'd': 3}
+    
 
 def test_interleave():
     a = [0, 2, 4, 6]
