@@ -24,7 +24,35 @@ from utilitiespackage.yunobuiltin import (
     rpartial,
     juxt,
     thread,
+    concat,
+    assoc,
+    assoc_deep,
 )
+
+def test_assoc():
+    d_0 = {"a": 0, "b":1}
+    assert assoc(d_0, "a",7,"b", 8) == {"a": 7, "b":8}
+    d_0 = None
+    assert assoc(d_0, "a",7,"b", 8) == {"a": 7, "b":8}
+
+
+def test_assoc_deep():
+    d_0 = {"a": 0, "b":1}
+    assert assoc_deep(d_0, "a",7,"b", 8) == {"a": 7, "b":8}
+    d_0 = None
+    assert assoc_deep(d_0, "a",7,"b", 8) == {"a": 7, "b":8}
+
+
+def test_concat():
+    a = [0,1,2,3]
+    b = [4,5,6,7]
+    assert list(concat(a, b)) == [0,1,2,3,4,5,6,7]
+    i_a = 0
+    i_b = 1
+    assert list(concat(i_a, i_b)) == [0,1]
+    d_a = {"a":0}
+    d_b = {"b":1}
+    assert list(concat(d_a, d_b)) == ['a', 'b']
 
 
 def test_gensym():
