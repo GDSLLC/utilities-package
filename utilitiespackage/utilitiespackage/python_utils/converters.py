@@ -70,7 +70,7 @@ def to_int(input_, default=0, exception=(ValueError, TypeError), regexp=None):
         regexp = re.compile(regexp)
     elif hasattr(regexp, "search"):
         pass
-    elif regexp is not None:
+    elif regexp is not None:  # pragma: no cover
         raise TypeError("unknown argument for regexp parameter: %r" % regexp)
 
     try:
@@ -142,7 +142,7 @@ def to_float(input_, default=0, exception=(ValueError, TypeError), regexp=None):
         regexp = re.compile(regexp)
     elif hasattr(regexp, "search"):
         pass
-    elif regexp is not None:
+    elif regexp is not None:  # pragma: no cover
         raise TypeError("unknown argument for regexp parameter")
 
     try:

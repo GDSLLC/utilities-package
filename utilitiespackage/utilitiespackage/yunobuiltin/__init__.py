@@ -31,7 +31,7 @@ def isa(value, target):
         return False
 
 
-class MultiFn(object): # pragma: no cover
+class MultiFn(object):  # pragma: no cover
     def __init__(self, dispatch):
         self.dispatch = dispatch
         self.dispatch_alist = []
@@ -151,7 +151,7 @@ def interleave(*args):
                     break
 
 
-def merge_with(f, *dicts): # pragma: no cover
+def merge_with(f, *dicts):  # pragma: no cover
     """ Merges dicts using f(old, new) when encountering collision. """
     r = {}
     sentinel = object()
@@ -165,7 +165,7 @@ def merge_with(f, *dicts): # pragma: no cover
     return r
 
 
-def deep_merge_with(f, *dicts): # pragma: no cover
+def deep_merge_with(f, *dicts):  # pragma: no cover
     """ Merges dicts recursively, resolving node conflicts using f """
 
     def _deep_merge_with(*ds):
@@ -582,7 +582,7 @@ def flatten(xs):
             yield x
 
 
-def group_by_and_transform(grouper, transformer, iterable): # pragma: no cover
+def group_by_and_transform(grouper, transformer, iterable):  # pragma: no cover
     """ Sort & Group iterable by grouper, apply transformer to each group.
 
         Grouper must be a function that takes an item in the iterable and
@@ -595,7 +595,7 @@ def group_by_and_transform(grouper, transformer, iterable): # pragma: no cover
     return {key: map(transformer, group) for key, group in groupby(sorted(iterable, key=grouper), key=grouper)}
 
 
-def group_by(f, i): # pragma: no cover
+def group_by(f, i):  # pragma: no cover
     """ Groups i by f, returning a dictionary keyed by f. """
     return group_by_and_transform(f, identity, i)
 
@@ -614,7 +614,7 @@ def is_seq(x):
     return isinstance(x, __Sequence)
 
 
-def transform_tree(f, t): # pragma: no cover
+def transform_tree(f, t):  # pragma: no cover
     """ Walks a tree (dict of dicts), depth-first, calling f(k, v) to transform
 
     The function should take two arguments, the key and value,
@@ -642,10 +642,10 @@ class Reduced(BaseException):
     catch this.
     """
 
-    def __init__(self, val): # pragma: no cover
+    def __init__(self, val):  # pragma: no cover
         self.val = val
 
-    def __str__(self): # pragma: no cover
+    def __str__(self):  # pragma: no cover
         return "<Reduced: {}>".format(val)
 
 
@@ -681,7 +681,7 @@ def better_reduce(f, *xs):
 
     elif l == 1:
 
-        coll = iter(xs[0]) # pragma: no cover
+        coll = iter(xs[0])  # pragma: no cover
         try:  # pragma: no cover
             x = next(coll)
             y = next(coll)
@@ -698,7 +698,7 @@ def better_reduce(f, *xs):
         except ValueError:  # pragma: no cover
             return ValueError
 
-    elif l == 2: # pragma: no cover
+    elif l == 2:  # pragma: no cover
         init = xs[0]
         coll = xs[1]
 

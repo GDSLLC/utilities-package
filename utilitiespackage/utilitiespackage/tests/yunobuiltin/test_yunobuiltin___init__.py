@@ -44,16 +44,19 @@ from utilitiespackage.yunobuiltin import (
     get_in,
     better_map,
 )
+
+
 def test_better_map():
     def addition(*args):
         return args
 
     numbers = ([2, 4, 6, 8], [2, 4, 6, 8])
     result = list(better_map(addition, numbers, numbers))
-    assert result ==  [([2, 4, 6, 8],[2, 4, 6, 8]),([2, 4, 6, 8], [2, 4, 6, 8])]
+    assert result == [([2, 4, 6, 8], [2, 4, 6, 8]), ([2, 4, 6, 8], [2, 4, 6, 8])]
     numbers = ([2, 4, 6, 8], [2, 4, 6, 8])
     result = list(better_map(addition, numbers))
-    assert result ==  [(2, 4, 6, 8), (2, 4, 6, 8)]
+    assert result == [(2, 4, 6, 8), (2, 4, 6, 8)]
+
 
 def test_get_in():
     d_0 = {"a": 0, "b": 0}
