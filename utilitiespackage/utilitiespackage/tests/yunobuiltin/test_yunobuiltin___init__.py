@@ -41,7 +41,13 @@ from utilitiespackage.yunobuiltin import (
     select_keys,
     select_vals,
     if_let,
+    get_in,
 )
+
+
+def test_get_in():
+    d_0 = {"a": 0, "b": 0}
+    assert get_in(d_0, "a") == 0
 
 
 def test_if_let():
