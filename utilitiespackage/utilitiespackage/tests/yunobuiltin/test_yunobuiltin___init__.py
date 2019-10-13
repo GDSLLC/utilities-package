@@ -40,7 +40,21 @@ from utilitiespackage.yunobuiltin import (
     dissoc_deep_in,
     select_keys,
     select_vals,
+    if_let,
 )
+
+
+def test_if_let():
+    def run_if_true(expression):
+        return True
+
+    def run_if_false(expression):
+        return False
+
+    assert if_let(0 < 1, run_if_true, run_if_false) == True
+    assert if_let(1 < 0, run_if_true, run_if_false) == False
+    assert if_let(0 < 1, True, False) == True
+    assert if_let(1 < 0, True, False) == False
 
 
 def test_select_vals():
@@ -245,6 +259,7 @@ def test_append():
 
 
 def test_prepend():
+    assert list(prepend([-1, 0], [1, 2, 3])) == [-1, 0, 1, 2, 3]
     assert list(prepend(1, [1, 2, 3])) == [1, 1, 2, 3]
 
 

@@ -463,12 +463,12 @@ def prepend(v, l):
     Ignores None as l
     """
     if isinstance(v, list):
-        tmp = [v]
+        tmp = v
         tmp.extend(l)
         return tmp
     else:
 
-        def generator():
+        def generator():  # pragma: no cover
             yield v
             try:  # pragma: no cover
                 for x in l:
@@ -476,7 +476,7 @@ def prepend(v, l):
             except TypeError:  # pragma: no cover
                 pass
 
-        return generator()
+        return generator()  # pragma: no cover
 
 
 cons = prepend
@@ -494,7 +494,7 @@ def append(l, *vs):
         return l
     else:
 
-        def generator():
+        def generator():  # pragma: no cover
             try:  # pragma: no cover
                 for x in l:
                     yield x
@@ -503,7 +503,7 @@ def append(l, *vs):
             for v in vs:
                 yield v
 
-        return generator()
+        return generator()  # pragma: no cover
 
 
 conj = append
