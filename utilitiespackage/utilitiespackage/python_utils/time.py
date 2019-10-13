@@ -71,7 +71,7 @@ def format_time(timestamp, precision=datetime.timedelta(seconds=1)):
         seconds = seconds - (seconds % precision_seconds)
 
         return str(datetime.timedelta(seconds=seconds))
-    elif isinstance(timestamp, datetime.datetime):
+    elif isinstance(timestamp, datetime.datetime):  # pragma: no cover
         # Python 2 doesn't have the timestamp method
         if hasattr(timestamp, "timestamp"):  # pragma: no cover
             seconds = timestamp.timestamp()
@@ -93,5 +93,5 @@ def format_time(timestamp, precision=datetime.timedelta(seconds=1)):
         return str(timestamp)
     elif timestamp is None:
         return "--:--:--"
-    else:
+    else: # pragma: no cover
         raise TypeError("Unknown type %s: %r" % (type(timestamp), timestamp))
