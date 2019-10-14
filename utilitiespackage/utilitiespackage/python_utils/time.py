@@ -93,5 +93,5 @@ def format_time(timestamp, precision=datetime.timedelta(seconds=1)):
         return str(timestamp)
     elif timestamp is None:
         return "--:--:--"
-    else: # pragma: no cover
+    else:  # pragma: no cover
         raise TypeError("Unknown type %s: %r" % (type(timestamp), timestamp))
