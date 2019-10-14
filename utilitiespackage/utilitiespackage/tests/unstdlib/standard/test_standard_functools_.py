@@ -1,7 +1,7 @@
 import warnings
 
-from utilitiespackage.standard.collections_ import RecentlyUsedContainer
-from utilitiespackage.standard.functools_ import assert_hashable, memoized, memoized_method, deprecated
+from utilitiespackage.unstdlib.standard.collections_ import RecentlyUsedContainer
+from utilitiespackage.unstdlib.standard.functools_ import assert_hashable, memoized, memoized_method, deprecated
 
 
 def test_standard_functools_assert_hashable():

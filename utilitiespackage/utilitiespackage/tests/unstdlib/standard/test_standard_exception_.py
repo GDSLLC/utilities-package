@@ -1,4 +1,4 @@
-from utilitiespackage.standard.exception_ import convert_exception
+from utilitiespackage.unstdlib.standard.exception_ import convert_exception
 
 
 def test_standard_exception_convert_exception():

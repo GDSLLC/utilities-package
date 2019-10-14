@@ -1,4 +1,4 @@
-from utilitiespackage.standard.dict_ import get_many, pop_many
+from utilitiespackage.unstdlib.standard.dict_ import get_many, pop_many
 
 
 def test_standard_dict_get_many():

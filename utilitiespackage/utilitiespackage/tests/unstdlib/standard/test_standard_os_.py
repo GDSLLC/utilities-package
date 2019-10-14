@@ -1,6 +1,6 @@
 import os
 
-from utilitiespackage.standard.os_ import chdir
+from utilitiespackage.unstdlib.standard.os_ import chdir
 
 
 def test_chdir():

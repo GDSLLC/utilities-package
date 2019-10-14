@@ -1,4 +1,4 @@
-from utilitiespackage.standard.type_ import is_subclass
+from utilitiespackage.unstdlib.standard.type_ import is_subclass
 
 
 def test_is_subclass():

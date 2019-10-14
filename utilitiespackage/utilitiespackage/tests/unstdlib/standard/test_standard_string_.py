@@ -1,6 +1,6 @@
 import string
 
-from utilitiespackage.standard.string_ import (
+from utilitiespackage.unstdlib.standard.string_ import (
     r,
     random_string,
     number_to_string,

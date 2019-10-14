@@ -1,4 +1,4 @@
-from utilitiespackage.standard.collections_ import RecentlyUsedContainer
+from utilitiespackage.unstdlib.standard.collections_ import RecentlyUsedContainer
 
 
 def test_standard_collections_recentlyusedcontainer():

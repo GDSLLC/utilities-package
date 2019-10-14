@@ -6,7 +6,7 @@ from sqlalchemy import create_engine, Sequence
 from sqlalchemy import String, Integer, Float, Boolean, Column
 from sqlalchemy.orm import sessionmaker
 
-from utilitiespackage.sqlalchemy import enumerate_query_by_limit
+from utilitiespackage.unstdlib.sqlalchemy import enumerate_query_by_limit
 
 filename = "/tmp/test.sqlite"
 if os.path.exists(filename):

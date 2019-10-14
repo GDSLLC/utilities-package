@@ -3,8 +3,8 @@ import hashlib
 import time
 import functools
 
-from unstdlib.standard.functools_ import memoized
-from unstdlib.standard.list_ import iterate_items, iterate
+from utilitiespackage.unstdlib.standard.functools_ import memoized
+from utilitiespackage.unstdlib.standard.list_ import iterate_items, iterate
 
 try:
     import markupsafe
@@ -72,7 +72,7 @@ def _generate_dom_attrs(attrs, allow_no_value=True):
     is skipped.
     """
     for attr in iterate_items(attrs):
-        if isinstance(attr, basestring):
+        if isinstance(attr, str):
             attr = (attr, True)
         key, value = attr
         if value is None:
@@ -133,7 +133,7 @@ def tag(tagname, content="", attrs=None):
     if content is None:
         return literal("<%s />" % open_tag)
 
-    content = "".join(iterate(content, unless=(basestring, literal)))
+    content = "".join(iterate(content, unless=(str, literal)))
     return literal("<%s>%s</%s>" % (open_tag, content, tagname))
 
 

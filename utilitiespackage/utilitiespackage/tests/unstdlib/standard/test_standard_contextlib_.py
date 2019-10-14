@@ -1,6 +1,6 @@
 import os
 
-from utilitiespackage.standard.contextlib_ import open_atomic, _doctest_setup
+from utilitiespackage.unstdlib.standard.contextlib_ import open_atomic, _doctest_setup
 
 
 def test_standard_contextlib_open_atomic():
