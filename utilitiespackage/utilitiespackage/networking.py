@@ -4,7 +4,7 @@ import subprocess
 def get_primary_address(mockdata=False):
     if mockdata:
         data = mockdata
-    else: # pragma: no cover
+    else:  # pragma: no cover
         data = subprocess.check_output(["ip", "addr"])
     data = data.decode()
     lines = data.split("\n")

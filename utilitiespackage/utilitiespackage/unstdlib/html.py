@@ -6,16 +6,16 @@ import functools
 from utilitiespackage.unstdlib.standard.functools_ import memoized
 from utilitiespackage.unstdlib.standard.list_ import iterate_items, iterate
 
-try: # pragma: no cover
+try:  # pragma: no cover
     import markupsafe
 
     MarkupType = markupsafe.Markup
-except ImportError: # pragma: no cover
+except ImportError:  # pragma: no cover
     MarkupType = unicode
 
 
 @memoized
-def _cache_key_by_md5(src_path, chunk_size=65536): # pragma: no cover
+def _cache_key_by_md5(src_path, chunk_size=65536):  # pragma: no cover
     hash = hashlib.md5()
     with open(src_path, "rb") as f:
         for chunk in iter(lambda: f.read(65536), ""):
@@ -57,9 +57,9 @@ def get_cache_buster(src_path, method="importtime"):
         >>> get_cache_buster(SRC_PATH, method='md5') == _cache_key_by_md5(SRC_PATH)
         True
     """
-    try: # pragma: no cover
+    try:  # pragma: no cover
         fn = _BUST_METHODS[method]
-    except KeyError: # pragma: no cover
+    except KeyError:  # pragma: no cover
         raise KeyError("Unsupported busting method value: %s" % method)
 
     return fn(src_path)
@@ -71,7 +71,7 @@ def _generate_dom_attrs(attrs, allow_no_value=True):
     If the value is `True`, then it is treated as no-value. If `None`, then it
     is skipped.
     """
-    for attr in iterate_items(attrs): # pragma: no cover
+    for attr in iterate_items(attrs):  # pragma: no cover
         if isinstance(attr, str):
             attr = (attr, True)
         key, value = attr
@@ -85,7 +85,7 @@ def _generate_dom_attrs(attrs, allow_no_value=True):
             yield '%s="%s"' % (key, value.replace('"', '\\"'))
 
 
-class literal(MarkupType): # pragma: no cover
+class literal(MarkupType):  # pragma: no cover
     """ Wrapper type which represents an HTML literal that does not need to be
     escaped. Will use `MarkupSafe` if available, otherwise it's a dumb
     unicode-like object.
@@ -178,13 +178,13 @@ def javascript_link(src_url, src_path=None, cache_bust=None, content="", extra_a
         >>> javascript_link('/static/js/core.js')
         u'<script src="/static/js/core.js" type="text/javascript"></script>'
     """
-    if cache_bust: # pragma: no cover
+    if cache_bust:  # pragma: no cover
         append_suffix = get_cache_buster(src_path=src_path, method=cache_bust)
         delim = "&" if "?" in src_url else "?"
         src_url += delim + append_suffix
 
     attrs = {"src": src_url, "type": "text/javascript"}
-    if extra_attrs: # pragma: no cover
+    if extra_attrs:  # pragma: no cover
         attrs.update(extra_attrs)
 
     return tag("script", content=content, attrs=attrs)
@@ -216,13 +216,13 @@ def stylesheet_link(src_url, src_path=None, cache_bust=None, content="", extra_a
         >>> stylesheet_link('/static/css/media.css')
         u'<link href="/static/css/media.css" rel="stylesheet"></link>'
     """
-    if cache_bust: # pragma: no cover
+    if cache_bust:  # pragma: no cover
         append_suffix = get_cache_buster(src_path=src_path, method=cache_bust)
         delim = "&" if "?" in src_url else "?"
         src_url += delim + append_suffix
 
     attrs = {"href": src_url, "rel": "stylesheet"}
-    if extra_attrs: # pragma: no cover
+    if extra_attrs:  # pragma: no cover
         attrs.update(extra_attrs)
 
     return tag("link", content=content, attrs=attrs)

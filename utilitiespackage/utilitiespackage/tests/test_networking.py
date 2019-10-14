@@ -1,5 +1,6 @@
 from utilitiespackage.networking import get_primary_address
 
+
 def test_get_primary_address():
     mockdata_0 = b"""
     1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
