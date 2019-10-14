@@ -13,7 +13,7 @@ setup(
     author="Terminal Labs",
     author_email="solutions@terminallabs.com",
     license="see LICENSE file",
-    packages=["utilitiespackage", "utilitiespackage.standard", "utilitiespackage.tests"],
+    packages=["utilitiespackage"],
     zip_safe=False,
     include_package_data=True,
     install_requires=[
