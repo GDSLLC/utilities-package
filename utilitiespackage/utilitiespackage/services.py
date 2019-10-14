@@ -8,6 +8,6 @@ def service_is_up(port):
         s.connect(("localhost", port))
         s.close()
         return_value = True
-    except (socket.error):
+    except (socket.error): # pragma: no cover
         return_value = False
     return return_value
