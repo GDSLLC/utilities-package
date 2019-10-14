@@ -226,9 +226,3 @@ def stylesheet_link(src_url, src_path=None, cache_bust=None, content="", extra_a
         attrs.update(extra_attrs)
 
     return tag("link", content=content, attrs=attrs)
-
-
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod(optionflags=doctest.ELLIPSIS)
