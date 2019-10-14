@@ -58,6 +58,7 @@ setup(
         "pytest-mock",
         "pytest-click",
         "pytest-pylint",
+        "pytest-httpserver",
         "black",
         "flake8",
         "radon",
