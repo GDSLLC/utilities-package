@@ -2,7 +2,7 @@ from utilitiespackage.derived_settings import APPDIR, SETUPFILEDIR, TESTDIR, MEM
 
 
 def set_vars():
-    VERSION = "0.0.8"
+    VERSION = "0.0.9"
     PRINT_VERBOSITY = "high"
     EXCLUDED_DIRS = [".DS_Store"]
     PROJECT_NAME = "utilitiespackage"
