@@ -19,6 +19,7 @@ setup(
     install_requires=[
         "setuptools",
         "boltons",
+        "astropy",
         "path.py",
         "scipy",
         "bash",
